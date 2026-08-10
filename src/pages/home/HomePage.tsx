@@ -61,7 +61,7 @@ export default function HomePage() {
             </a>
             {/* Email */}
             <a
-              href="mailto:doanhthinh@example.com"
+              href="mailto:thinh.doanh.mobilecity@gmail.com"
               className="hero-social-link"
               aria-label="Email"
             >
