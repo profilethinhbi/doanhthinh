@@ -1,0 +1,148 @@
+/* =========================================
+   PROJECTS PAGE - Dark Theme
+========================================= */
+
+.projects-page {
+  min-height: 100vh;
+  background: var(--color-dark-bg-2);
+}
+
+.projects-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 4rem) 3rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.projects-header {
+  text-align: center;
+}
+
+.projects-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+  position: relative;
+}
+
+.projects-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.projects-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 1.5rem 0 0;
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.projects-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.projects-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.projects-filter-btn:hover {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.projects-filter-btn.active {
+  color: #c89b4b;
+  border-color: rgba(200, 155, 75, 0.5);
+  background: rgba(200, 155, 75, 0.08);
+}
+
+.projects-filter-count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.projects-filter-btn.active .projects-filter-count {
+  background: rgba(200, 155, 75, 0.15);
+  opacity: 1;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.projects-empty {
+  padding: 80px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-inner {
+    padding: calc(var(--nav-height) + 2.5rem) 1.5rem 4rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

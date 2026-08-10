@@ -1,0 +1,314 @@
+{
+  "home": "Trang chủ",
+  "about": "Giới thiệu",
+  "education": "Học vấn",
+  "achievements": "Thành tích",
+  "skills": "Kỹ năng",
+  "projects": "Dự án",
+  "publications": "Công bố",
+  "services": "Dịch vụ",
+  "contact": "Liên hệ",
+  "home_page": {
+    "badge": "Thạc sĩ Kỹ thuật Điện tử",
+    "name": "Đỗ Anh Thịnh",
+    "roles": ["Electronic Engineer", "Researcher", "Innovator"],
+    "greeting": "Xin chào, mình là Đỗ Anh Thịnh",
+    "description": "Tôi nghiên cứu và phát triển các hệ thống điện tử, IoT, hệ thống nhúng và các giải pháp công nghệ ứng dụng trong thực tế.",
+    "viewProfileButton": "Xem hồ sơ",
+    "downloadCVButton": "Tải CV",
+    "moreAboutMeButton": "Xem hồ sơ"
+  },
+  "education_page": {
+    "title": "Quá trình học tập"
+  },
+  "achievements_page": {
+    "title": "Thành tích nổi bật",
+    "viewDetail": "Xem chi tiết",
+    "journeyTitle": "Hành trình phát triển"
+  },
+  "publications_page": {
+    "title": "Công bố khoa học",
+    "subtitle": "Các bài báo, hội nghị và luận văn đã công bố trong quá trình nghiên cứu."
+  },
+  "about_page": {
+    "hero": {
+      "title": "Về mình"
+    },
+    "image": {
+      "caption": "Đỗ Anh Thịnh - Thạc sĩ Kỹ thuật điện tử"
+    },
+    "bio": [
+      "Mình là Đỗ Anh Thịnh, Thạc sĩ Kỹ thuật điện tử, có định hướng nghiên cứu và phát triển trong lĩnh vực điện tử, hệ thống nhúng và Internet of Things (IoT).",
+      "Mình có niềm đam mê với việc xây dựng các sản phẩm và giải pháp công nghệ có tính ứng dụng thực tế, từ thiết kế phần cứng, mạch điện, firmware cho đến phát triển phần mềm và giao diện người dùng.",
+      "Đối với mình, IoT là sự kết hợp giữa phần cứng, phần mềm, truyền thông và dữ liệu. Việc đưa dữ liệu từ các cảm biến và thiết bị nhúng lên hệ thống, xử lý và trực quan hóa để tạo ra một sản phẩm hoàn chỉnh là một trong những lĩnh vực mình đặc biệt quan tâm.",
+      "Bên cạnh IoT và hệ thống nhúng, mình cũng quan tâm đến các công nghệ liên quan đến trí tuệ nhân tạo, tự động hóa, robotics và các giải pháp phần mềm hỗ trợ cho thiết bị điện tử.",
+      "Mục tiêu của mình là tiếp tục phát triển chuyên môn trong lĩnh vực kỹ thuật điện tử, hệ thống nhúng và IoT, đồng thời nghiên cứu những công nghệ mới để tạo ra các sản phẩm có giá trị và khả năng ứng dụng trong thực tế."
+    ],
+    "badges": [
+      "Điện tử",
+      "IoT",
+      "Embedded Systems",
+      "AI & Phần mềm",
+      "Robotics"
+    ],
+    "journey": {
+      "title": "Hành trình học tập & phát triển",
+      "subtitle": "Những cột mốc trong quá trình học tập, nghiên cứu và phát triển chuyên môn.",
+      "legendEducation": "Học vấn",
+      "legendProject": "Kinh nghiệm & nghiên cứu",
+      "timeline": {
+        "see_more": "Xem thêm",
+        "education": {
+          "high_school": {
+            "period": "2016 - 2019",
+            "title": "Trung học phổ thông",
+            "organization": "Trường THPT",
+            "description": "Bắt đầu hình thành niềm đam mê với công nghệ, điện tử và lập trình thông qua các hoạt động học tập và thực hành."
+          },
+          "university": {
+            "period": "2019 - 2023",
+            "title": "Kỹ thuật Điện tử - Viễn thông",
+            "organization": "Đại học",
+            "description": "Theo học chuyên ngành Kỹ thuật Điện tử - Viễn thông, tập trung nghiên cứu các kiến thức về điện tử, viễn thông, hệ thống nhúng, xử lý tín hiệu và các hệ thống IoT."
+          },
+          "master": {
+            "period": "2023 - 2025",
+            "title": "Thạc sĩ Kỹ thuật điện tử",
+            "organization": "Chương trình đào tạo sau đại học",
+            "description": "Nghiên cứu chuyên sâu về kỹ thuật điện tử, hệ thống nhúng, IoT và các giải pháp giám sát, điều khiển ứng dụng trong thực tế."
+          }
+        },
+        "experience": {
+          "research": {
+            "period": "2023 - nay",
+            "title": "Nghiên cứu & phát triển",
+            "organization": "Điện tử - IoT - Embedded Systems",
+            "description": "Nghiên cứu và phát triển các hệ thống điện tử, IoT và hệ thống nhúng. Tập trung vào thiết kế phần cứng, thu thập dữ liệu cảm biến, truyền thông, xử lý dữ liệu và xây dựng hệ thống giám sát."
+          },
+          "iot": {
+            "period": "2023 - nay",
+            "title": "Kỹ sư IoT & hệ thống nhúng",
+            "organization": "Dự án cá nhân & nghiên cứu",
+            "description": "Phát triển các hệ thống IoT sử dụng vi điều khiển và cảm biến, kết nối thiết bị với máy chủ thông qua MQTT, HTTP và các nền tảng lưu trữ dữ liệu."
+          },
+          "freelancer": {
+            "period": "2024 - nay",
+            "title": "Kỹ sư điện tử & phát triển giải pháp",
+            "organization": "Tự do",
+            "description": "Thực hiện các dự án liên quan đến phát triển phần mềm, tích hợp phần cứng, IoT, thiết kế PCB, thiết kế 3D và các giải pháp công nghệ theo yêu cầu."
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Bạn muốn tìm hiểu thêm hoặc hợp tác cùng mình?",
+      "cv": "Tải CV",
+      "contact": "Liên hệ với mình"
+    },
+    "seeMyProjects": "Xem các dự án của mình",
+    "techStack": {
+      "title": "Những công nghệ mình thường sử dụng",
+      "subtitle": "Các công nghệ, nền tảng và công cụ mình đã sử dụng trong quá trình học tập, nghiên cứu và phát triển dự án.",
+      "categories": {
+        "frontend": "Giao diện người dùng",
+        "backend": "Backend",
+        "database": "Cơ sở dữ liệu",
+        "devops": "Công cụ triển khai",
+        "tools": "Công cụ",
+        "mobile": "Ứng dụng di động",
+        "desktop": "Ứng dụng desktop",
+        "embedded": "Hệ thống nhúng",
+        "board": "Mạch điện / nhúng",
+        "protocol": "Các giao thức",
+        "computer_vision": "Thị giác máy tính",
+        "other": "Khác"
+      }
+    },
+    "skills": {
+      "title": "Mình có những kỹ năng gì?",
+      "subtitle": "Những kỹ năng được tích lũy thông qua quá trình nghiên cứu, phát triển dự án và làm việc thực tế.",
+      "categories": {
+        "soft-skills": "Kỹ năng mềm",
+        "clean-code": "Lập trình",
+        "3d-design": "Thiết kế 3D",
+        "pcb-design": "Thiết kế PCB",
+        "CAD-CAM": "CAD/CAM"
+      },
+      "items": {
+        "communication": {
+          "name": "Giao tiếp",
+          "description": "Có khả năng trao đổi và trình bày ý tưởng kỹ thuật, phối hợp trong quá trình phát triển dự án và làm việc với các yêu cầu khác nhau."
+        },
+        "problem-solving": {
+          "name": "Giải quyết vấn đề",
+          "description": "Có khả năng phân tích vấn đề, xác định nguyên nhân và xây dựng giải pháp, đặc biệt trong quá trình debug phần cứng, firmware và phần mềm."
+        },
+        "adaptability": {
+          "name": "Tính thích nghi",
+          "description": "Có khả năng nhanh chóng tiếp cận các công nghệ, nền tảng và công cụ mới để đáp ứng yêu cầu của từng dự án."
+        },
+        "cad-cam": {
+          "name": "CAD/CAM",
+          "description": "Có kinh nghiệm sử dụng các phần mềm thiết kế và các công cụ CAD/CAM phục vụ thiết kế cơ khí, chế tạo sản phẩm và phát triển các hệ thống điện tử."
+        },
+        "3d-design": {
+          "name": "Thiết kế 3D",
+          "description": "Có khả năng thiết kế mô hình 3D phục vụ chế tạo sản phẩm, thiết kế vỏ thiết bị, các bộ phận cơ khí và các dự án DIY."
+        },
+        "pcb-design": {
+          "name": "Thiết kế PCB",
+          "description": "Có kinh nghiệm thiết kế mạch nguyên lý, bố trí linh kiện và thiết kế PCB phục vụ các hệ thống điện tử và IoT."
+        },
+        "clean-code": {
+          "name": "Lập trình",
+          "description": "Ưu tiên xây dựng mã nguồn rõ ràng, có cấu trúc, dễ bảo trì và có khả năng mở rộng. Quan tâm đến tính mô-đun và khả năng tái sử dụng trong quá trình phát triển phần mềm."
+        }
+      }
+    }
+  },
+  "projects_page": {
+    "hero": {
+      "title": "Dự án & nghiên cứu",
+      "subtitle": "Những dự án nghiên cứu, dự án cá nhân và các sản phẩm công nghệ mình đã thực hiện."
+    },
+    "filter_label": "Lọc theo tag",
+    "filter_all": "Tất cả",
+    "seeMore": "Xem thêm",
+    "features": "Tính năng",
+    "architecture": "Kiến trúc",
+    "empty": "Không có dự án nào phù hợp.",
+    "status": {
+      "completed": "Hoàn thành",
+      "in_progress": "Đang thực hiện"
+    },
+    "items": {
+      "smart_traffic_light": {
+        "title": "Đèn giao thông thông minh",
+        "description": "Hệ thống đèn giao thông thông minh sử dụng YOLO và Raspberry Pi để nhận diện phương tiện và điều chỉnh thời gian đèn theo tình trạng giao thông thực tế.",
+        "features": [
+          "Nhận diện phương tiện real-time với YOLO",
+          "Điều chỉnh thời gian đèn theo tình trạng giao thông"
+        ],
+        "architecture": "YOLO được sử dụng cho bài toán nhận diện phương tiện, Raspberry Pi xử lý dữ liệu và điều khiển hệ thống đèn, kết nối với hệ thống mạng để truyền dữ liệu."
+      },
+      "stemvn_bluecontrol": {
+        "title": "STEMVN BlueControl",
+        "description": "Ứng dụng di động điều khiển robot giáo dục STEMVN qua Bluetooth, cho phép học sinh lập trình và điều khiển robot một cách trực quan.",
+        "features": [
+          "Điều khiển robot STEMVN qua Bluetooth"
+        ],
+        "architecture": "Ứng dụng di động kết nối với robot thông qua Bluetooth, sử dụng giao diện lập trình kéo-thả để tạo các lệnh điều khiển."
+      },
+      "land_slide_detection": {
+        "title": "Hệ thống cảnh báo sạt lở đất",
+        "description": "Hệ thống cảnh báo sạt lở đất sử dụng các cảm biến để phát hiện nguy cơ sạt lở và gửi cảnh báo qua mạng LoRa tới trạm trung tâm, sau đó truyền dữ liệu lên server bằng giao thức MQTT.",
+        "features": [
+          "Phát hiện nguy cơ sạt lở dựa trên độ ẩm, lượng mưa và hướng nghiêng của trụ quan trắc",
+          "Gửi cảnh báo qua mạng LoRa tới trạm trung tâm",
+          "Trạm trung tâm gửi dữ liệu lên server bằng giao thức MQTT"
+        ],
+        "architecture": "Các cảm biến đo độ ẩm, lượng mưa và hướng nghiêng gửi dữ liệu qua mạng LoRa tới trạm trung tâm. Trạm trung tâm xử lý dữ liệu và gửi thông tin lên server bằng giao thức MQTT."
+      },
+      "job_fit": {
+        "title": "JobFit",
+        "description": "Ứng dụng web giúp người dùng so sánh kỹ năng và CV với yêu cầu của các vị trí tuyển dụng để đánh giá mức độ phù hợp.",
+        "features": [
+          "So sánh kỹ năng và CV với yêu cầu công việc",
+          "Đánh giá mức độ phù hợp với từng vị trí",
+          "Gợi ý các công việc phù hợp"
+        ],
+        "architecture": "Sử dụng embedding model để chuyển đổi văn bản thành vector, sau đó sử dụng cosine similarity để so sánh và đánh giá mức độ phù hợp."
+      },
+      "products_crawl_tool": {
+        "title": "Công cụ crawl dữ liệu sản phẩm",
+        "description": "Công cụ thu thập dữ liệu sản phẩm từ các website thương mại điện tử và chuyển đổi dữ liệu sang Excel hoặc CSV để phục vụ việc quản lý và nhập dữ liệu.",
+        "features": [
+          "Crawl dữ liệu sản phẩm từ các website thương mại điện tử",
+          "Cấu hình linh hoạt theo từng website",
+          "Chuyển đổi dữ liệu sang Excel hoặc CSV"
+        ],
+        "architecture": "Sử dụng Python và các thư viện như Playwright để thu thập dữ liệu, xử lý dữ liệu và xuất kết quả sang Excel hoặc CSV."
+      },
+      "flexiable_smarthome": {
+        "title": "Hệ thống nhà thông minh",
+        "description": "Hệ thống nhà thông minh sử dụng ESP32 và các cảm biến để điều khiển các thiết bị trong nhà thông qua ứng dụng di động.",
+        "features": [
+          "Thêm, sửa và xóa thiết bị linh hoạt thông qua ứng dụng",
+          "Điều khiển thiết bị trong nhà từ ứng dụng di động",
+          "Cơ chế xác thực đảm bảo lệnh được thực thi"
+        ],
+        "architecture": "ESP32 đóng vai trò gateway Internet và HMI, giao tiếp với Arduino UNO qua UART để điều khiển các thiết bị trong nhà. Hệ thống sử dụng MQTT và WebSocket cho truyền thông."
+      },
+      "smart_agriculture": {
+        "title": "Hệ thống nông nghiệp thông minh",
+        "description": "Hệ thống nông nghiệp thông minh sử dụng LoRa để truyền dữ liệu giữa các nút cảm biến và gateway, kết hợp cơ chế xác thực gói tin.",
+        "features": [
+          "Các nút cảm biến đo độ ẩm, nhiệt độ và ánh sáng",
+          "Truyền dữ liệu giữa các nút cảm biến và gateway bằng LoRa",
+          "Cơ chế xác thực gói tin đảm bảo an toàn dữ liệu",
+          "Gửi dữ liệu lên server để lưu trữ và phân tích bằng Grafana",
+          "Ứng dụng web quản lý các nút cảm biến và hiển thị dữ liệu theo thời gian thực"
+        ],
+        "architecture": "Các nút cảm biến sử dụng LoRa để truyền dữ liệu đến gateway. Gateway xử lý dữ liệu và gửi lên server bằng MQTT. Server lưu trữ dữ liệu trong InfluxDB và cung cấp API cho ứng dụng web."
+      },
+      "agriculture_ecommerce": {
+        "title": "Sàn thương mại điện tử nông nghiệp",
+        "description": "Sàn thương mại điện tử nông nghiệp giúp các nhà cung cấp nông sản bán sản phẩm trực tuyến và người dùng tìm kiếm, lựa chọn các sản phẩm nông nghiệp từ các nhà cung cấp.",
+        "features": [
+          "Nhà cung cấp có thể đăng ký và bán sản phẩm trực tuyến",
+          "Người dùng có thể tìm kiếm và mua sản phẩm",
+          "Tích hợp hệ thống thanh toán và vận chuyển",
+          "Admin quản lý nhà cung cấp, sản phẩm và đơn hàng"
+        ],
+        "architecture": "Hệ thống được xây dựng theo mô hình ứng dụng web thương mại điện tử, bao gồm giao diện người dùng, backend, cơ sở dữ liệu và các dịch vụ hỗ trợ quản lý sản phẩm, đơn hàng và người dùng."
+      }
+    }
+  },
+  "contact_page": {
+    "hero": {
+      "title": "Liên hệ với mình",
+      "subtitle": "Bạn có dự án muốn hợp tác, câu hỏi muốn trao đổi hoặc muốn kết nối? Hãy liên hệ với mình."
+    },
+    "info": {
+      "title": "Thông tin liên hệ",
+      "description": "Mình luôn sẵn sàng trao đổi về các dự án điện tử, IoT, hệ thống nhúng và các giải pháp công nghệ.",
+      "email_label": "Email",
+      "socials_label": "Mạng xã hội",
+      "socials": [
+        {
+          "label": "LinkedIn",
+          "href": "https://linkedin.com/in/mellivora24",
+          "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'><path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'/><rect x='2' y='9' width='4' height='12'/><circle cx='4' cy='4' r='2'/></svg>"
+        },
+        {
+          "label": "Facebook",
+          "href": "https://facebook.com/mellivora24",
+          "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/></svg>"
+        }
+      ]
+    },
+    "form": {
+      "name": "Họ và tên",
+      "name_placeholder": "Nguyễn Văn A",
+      "email": "Email",
+      "email_placeholder": "example@email.com",
+      "subject": "Tiêu đề",
+      "subject_placeholder": "Bạn muốn nói về điều gì?",
+      "message": "Nội dung",
+      "message_placeholder": "Nhắn gì đó cho mình nhé...",
+      "submit": "Gửi tin nhắn",
+      "errors": {
+        "name": "Vui lòng nhập họ và tên.",
+        "email_required": "Vui lòng nhập email.",
+        "email_invalid": "Email không hợp lệ.",
+        "message": "Vui lòng nhập nội dung tin nhắn.",
+        "submit": "Gửi thất bại, vui lòng thử lại sau."
+      },
+      "success": {
+        "title": "Đã gửi thành công!",
+        "description": "Cảm ơn bạn đã liên hệ. Mình sẽ phản hồi sớm nhất có thể.",
+        "reset": "Gửi tin nhắn khác"
+      }
+    }
+  }
+}

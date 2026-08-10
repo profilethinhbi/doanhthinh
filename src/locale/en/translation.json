@@ -1,0 +1,322 @@
+{
+  "home": "Home",
+  "about": "About",
+  "education": "Education",
+  "achievements": "Achievements",
+  "skills": "Skills",
+  "projects": "Projects",
+  "publications": "Publications",
+  "services": "Services",
+  "contact": "Contact",
+  "home_page": {
+    "badge": "Master of Electronic Engineering",
+    "name": "Do Anh Thinh",
+    "roles": ["Electronic Engineer", "Researcher", "Innovator"],
+    "greeting": "Hi, I'm Thinh",
+    "description": "I research and develop electronic systems, IoT, embedded systems and practical technology solutions.",
+    "viewProfileButton": "View Profile",
+    "downloadCVButton": "Download CV",
+    "moreAboutMeButton": "More information"
+  },
+  "education_page": {
+    "title": "Education"
+  },
+  "achievements_page": {
+    "title": "Achievements",
+    "viewDetail": "View Detail",
+    "journeyTitle": "Development Journey"
+  },
+  "publications_page": {
+    "title": "Publications",
+    "subtitle": "Research papers, conference proceedings and thesis published during my academic journey."
+  },
+  "about_page": {
+    "hero": {
+      "title": "About Me"
+    },
+    "image": {
+      "caption": "Electronics & Telecommunications Engineer"
+    },
+    "bio": [
+      "Glad you are here! My name is Đỗ Anh Thịnh. I am an Electronics and Telecommunications engineer with a strong interest in embedded systems, IoT, electronics, and connected devices.",
+      "My experience includes working with ESP32, sensors, communication protocols, embedded software, and IoT systems, with a focus on turning technical ideas into practical applications.",
+      "I enjoy developing complete systems from hardware to software, including sensor data acquisition, device communication, backend services, databases, and web interfaces.",
+      "My projects have covered household electricity and water monitoring, smart home systems, robotics, IoT monitoring, and other embedded and electronics applications.",
+      "My goal is to continue developing as an embedded and IoT engineer, combining electronics, firmware, communication technologies, and software to build reliable and useful real-world systems."
+    ],
+    "badges": [
+      "Embedded Systems",
+      "IoT",
+      "Electronics",
+      "ESP32",
+      "Robotics"
+    ],
+    "journey": {
+      "title": "My Journey",
+      "subtitle": "Education, research, and projects that shaped my technical journey.",
+      "legendEducation": "Education",
+      "legendProject": "Experience",
+      "timeline": {
+        "see_more": "See more",
+        "education": {
+          "high_school": {
+            "period": "2016 - 2019",
+            "title": "🏫 High School",
+            "organization": "High School",
+            "description": "Built an early interest in science, technology, and electronics, creating the foundation for later engineering studies."
+          },
+          "ptit": {
+            "period": "2019 - 2023",
+            "title": "🎓 Electronics & Telecommunications",
+            "organization": "Electric Power University",
+            "description": "Studied electronics and telecommunications, developing knowledge in embedded systems, electronics, communication technologies, and IoT."
+          }
+        },
+        "experience": {
+          "research": {
+            "period": "2023 - 2024",
+            "title": "🔬 Research & Projects",
+            "organization": "Electronics & Telecommunications",
+            "description": "Worked on electronics, embedded systems, IoT, robotics, and sensor-based projects, combining hardware and software."
+          },
+          "graduate": {
+            "period": "2024 - 2026",
+            "title": "🎓 Master's Study",
+            "organization": "Electronics Engineering",
+            "description": "Continued developing expertise in electronics, embedded systems, IoT, and research-oriented engineering projects."
+          },
+          "freelancer": {
+            "period": "2025 - Present",
+            "title": "💻 Technical Projects",
+            "organization": "Independent",
+            "description": "Developing and supporting electronics, embedded, IoT, web, and technical projects, from hardware prototyping and sensor integration to software and system interfaces."
+          }
+        }
+      }
+    },
+    "hobbies": {
+      "title": "My free time activities"
+    },
+    "cta": {
+      "title": "Want to see my projects or work together?",
+      "cv": "Download CV",
+      "contact": "Get in touch"
+    },
+    "seeMyProjects": "See my projects",
+    "techStack": {
+      "title": "Tech Stack",
+      "subtitle": "Technologies I work with",
+      "categories": {
+        "frontend": "User Interface",
+        "backend": "Backend applications",
+        "database": "Database",
+        "devops": "DevOps",
+        "tools": "Design & Tools",
+        "embedded": "Embedded",
+        "mobile": "Mobile",
+        "desktop": "Desktop",
+        "board": "Boards",
+        "protocol": "Protocols",
+        "computer_vision": "Computer Vision",
+        "other": "Other"
+      }
+    },
+    "skills": {
+      "title": "What skills do I have?",
+      "subtitle": "Skills I have accumulated through my projects and work experience.",
+      "categories": {
+        "soft-skills": "Soft Skills",
+        "clean-code": "Clean Code",
+        "3d-design": "3D Design",
+        "pcb-design": "PCB Design",
+        "CAD-CAM": "CAD/CAM"
+      },
+      "items": {
+        "communication": {
+          "name": "Communication",
+          "description": "Thanks to my freelance work, I have developed strong communication skills, allowing me to convey ideas and information clearly. I am also a good listener, understanding the needs of others and providing appropriate solutions."
+        },
+        "problem-solving": {
+          "name": "Problem Solving",
+          "description": "This skill allows me to analyze problems, identify root causes, and develop effective solutions, especially when debugging software and hardware issues."
+        },
+        "adaptability": {
+          "name": "Adaptability",
+          "description": "I am highly adaptable and can quickly adjust to new situations, technologies, and environments. I am open to learning new skills and embracing change."
+        },
+        "cad-cam": {
+          "name": "CAD/CAM",
+          "description": "I have experience using CAD/CAM software and CNC machines to design and manufacture mechanical parts based on 3D models or even create PCBs. I can create 3D models, generate toolpaths, and optimize designs for manufacturing processes."
+        },
+        "3d-design": {
+          "name": "3D Design",
+          "description": "I can use 3D modeling software to create accurate and detailed designs based on existing technical drawings or design them from scratch according to requirements."
+        },
+        "pcb-design": {
+          "name": "PCB Design",
+          "description": "I have experience in designing printed circuit boards (PCBs) for various applications. I can create schematics, layout components, and ensure proper electrical performance and manufacturability."
+        },
+        "clean-code": {
+          "name": "Clean Code",
+          "description": "I follow best practices for writing clean, maintainable, and efficient code. I prioritize readability, modularity, and reusability in my code to ensure long-term maintainability."
+        }
+      }
+    }
+  },
+  "projects_page": {
+    "hero": {
+      "title": "Projects",
+      "subtitle": "The projects I have worked on, including personal projects, academic projects, and professional work."
+    },
+    "filter_label": "Filter by tag",
+    "filter_all": "All",
+    "seeMore": "See more",
+    "features": "Features",
+    "architecture": "Architecture",
+    "empty": "No projects found.",
+    "status": {
+      "completed": "Completed",
+      "in_progress": "In Progress"
+    },
+    "items": {
+      "smart_traffic_light": {
+        "title": "Smart Traffic Light",
+        "description": "Smart traffic light system using computer vision and embedded hardware to detect vehicles and support adaptive traffic control.",
+        "features": [
+          "Real-time vehicle detection with YOLO",
+          "Adjust light timing based on traffic conditions"
+        ],
+        "architecture": "YOLO for vehicle detection, Raspberry Pi for data processing and light control, connected to the network system for data transmission."
+      },
+      "stemvn_bluecontrol": {
+        "title": "STEMVN BlueControl",
+        "description": "Mobile application to control STEMVN educational robots via Bluetooth, allowing students to program and control robots easily.",
+        "features": [
+          "Control STEMVN robot via Bluetooth"
+        ],
+        "architecture": "Mobile application connected to the robot via Bluetooth, using a drag-and-drop programming interface to create control commands."
+      },
+      "land_slide_detection": {
+        "title": "Landslide Detection System",
+        "description": "IoT landslide monitoring system using environmental sensors and LoRa communication to transmit monitoring data and alerts to a central system.",
+        "features": [
+          "Detect landslide risks based on humidity, rainfall, and the tilt direction of the monitoring pillar",
+          "Send alerts via LoRa network to the central station",
+          "Central station sends data to the server using MQTT protocol"
+        ],
+        "architecture": "Sensors measuring humidity, rainfall, and tilt direction of the monitoring pillar send data via LoRa network to the central station, which processes the data and sends alerts to the server using MQTT protocol."
+      },
+      "job_fit": {
+        "title": "JobFit",
+        "description": "Web application that helps users compare their skills and CV with job JDs to evaluate their fit with their CV.",
+        "features": [
+          "Compare user skills and CV with job JDs",
+          "Evaluate user fit with jobs based on their skills and preferences",
+          "Suggest suitable jobs for users based on their skills and preferences"
+        ],
+        "architecture": "Uses an embedding model to convert text into vectors, then uses cosine similarity to compare vectors and evaluate user fit with jobs."
+      },
+      "products_crawl_tool": {
+        "title": "Product Data Crawling Tool",
+        "description": "Tool to crawl product data from e-commerce websites and convert the format into Excel or CSV for easy uploading to Sapo or Shopify.",
+        "features": [
+          "Crawl product data from e-commerce websites",
+          "Dynamic configuration depending on each website",
+          "Convert data into Excel or CSV format for easy uploading to Sapo or Shopify"
+        ],
+        "architecture": "Uses Python and libraries like Playwright to crawl data from e-commerce websites, then processes the data and exports it to Excel or CSV format."
+      },
+      "flexiable_smarthome": {
+        "title": "Smart Home System",
+        "description": "Smart home system using ESP32, sensors, MQTT, and WebSocket communication to monitor and control household devices through a software interface.",
+        "features": [
+          "Devices can be added / edited / deleted flexibly via the mobile application",
+          "Control indoor devices via the mobile application",
+          "Authentication mechanism ensuring commands have been executed"
+        ],
+        "architecture": "ESP32 acts as the internet gateway and HMI, communicating with Arduino UNO via UART to control indoor devices. Communication uses MQTT and WebSocket."
+      },
+      "smart_agriculture": {
+        "title": "Smart Agriculture System",
+        "description": "IoT agriculture monitoring system using sensor nodes, LoRa, MQTT, and a server-side platform for collecting, storing, and visualizing environmental data.",
+        "features": [
+          "Sensor nodes measuring humidity, temperature, and light",
+          "Transmit data between sensor nodes and gateway using LoRa",
+          "Packet authentication mechanism ensuring data is transmitted securely",
+          "Upload data to the server for storage and analysis using Grafana",
+          "Web application allowing users to manage sensor nodes and view real-time data"
+        ],
+        "architecture": "Sensor nodes use LoRa to transmit data to the gateway, the gateway processes the data and sends it to the server via MQTT. The server stores data in InfluxDB and provides APIs for the web application to manage and display data."
+      },
+      "agriculture_ecommerce": {
+        "title": "Agricultural E-commerce Platform",
+        "description": "Agricultural e-commerce platform that helps agricultural suppliers sell their products online and users buy high-quality agricultural products from trusted suppliers.",
+        "features": [
+          "Agricultural suppliers can register and sell their products online",
+          "Users can search for and buy high-quality agricultural products from trusted suppliers",
+          "Integrated payment and shipping systems to ensure smooth and secure transactions",
+          "Admin manages the e-commerce platform, including suppliers, products, and orders"
+        ],
+        "architecture": ""
+      },
+      "household_energy_water": {
+        "title": "Household Electricity & Water Monitoring System",
+        "description": "Monitoring system for household electricity and water consumption using ESP32, PZEM-004T, and YF-S201 sensors, with data transmission and a web interface.",
+        "features": [
+          "Measure household electricity consumption",
+          "Measure water flow and consumption",
+          "Collect and synchronize sensor data",
+          "Display monitoring data through a web interface"
+        ],
+        "architecture": "ESP32 collects electricity and water data from PZEM-004T and YF-S201 sensors. Data is transmitted to the backend/cloud platform and displayed through the web application."
+      }
+    }
+  },
+  "contact_page": {
+    "hero": {
+      "title": "Get in touch",
+      "subtitle": "Have a project in mind, a technical question, or want to work together? Feel free to reach out."
+    },
+    "info": {
+      "title": "Contact information",
+      "description": "I usually respond within 24 hours. For professional inquiries, email or LinkedIn is preferred.",
+      "email_label": "Email",
+      "socials_label": "Social media",
+      "socials": [
+        {
+          "label": "LinkedIn",
+          "href": "#",
+          "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'/><rect x='2' y='9' width='4' height='12'/><circle cx='4' cy='4' r='2'/></svg>"
+        },
+        {
+          "label": "GitHub",
+          "href": "#",
+          "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.31 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.45 11.45 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.48 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z'/></svg>"
+        }
+      ]
+    },
+    "form": {
+      "name": "Full name",
+      "name_placeholder": "John Doe",
+      "email": "Email",
+      "email_placeholder": "example@email.com",
+      "subject": "Subject",
+      "subject_placeholder": "What do you want to talk about?",
+      "message": "Message",
+      "message_placeholder": "Write something to me...",
+      "submit": "Send message",
+      "errors": {
+        "name": "Please enter your name.",
+        "email_required": "Please enter your email.",
+        "email_invalid": "Invalid email address.",
+        "message": "Please enter your message.",
+        "submit": "Failed to send, please try again later."
+      },
+      "success": {
+        "title": "Message sent!",
+        "description": "Thanks for reaching out. I'll get back to you as soon as possible.",
+        "reset": "Send another message"
+      }
+    }
+  }
+}

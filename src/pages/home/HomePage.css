@@ -1,0 +1,338 @@
+/* =========================================
+   HERO SECTION - Dark Theme
+========================================= */
+
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  background: linear-gradient(135deg, #001410 0%, #002420 40%, #001e1a 70%, #001208 100%);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background decorative elements */
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 70% 50%, rgba(0, 70, 55, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 20%, rgba(200, 155, 75, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Decorative circuit/grid lines */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 3rem) 4rem 4rem;
+}
+
+/* =========================================
+   CONTENT (LEFT)
+========================================= */
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 560px;
+  animation: hero-fade-up 0.8s ease both;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c89b4b;
+  border: 1px solid rgba(200, 155, 75, 0.4);
+  background: rgba(200, 155, 75, 0.08);
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+/* Name */
+.hero-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Roles */
+.hero-roles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: -0.25rem 0;
+}
+
+.hero-role {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c89b4b;
+}
+
+.hero-role-sep {
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+/* Bio */
+.hero-bio {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  max-width: 460px;
+}
+
+/* Actions */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 28px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1.5px solid transparent;
+  letter-spacing: 0.3px;
+}
+
+.hero-btn--primary {
+  background: transparent;
+  color: #c89b4b;
+  border-color: #c89b4b;
+}
+
+.hero-btn--primary:hover {
+  background: #c89b4b;
+  color: #001410;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 155, 75, 0.3);
+}
+
+.hero-btn--outline {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Socials */
+.hero-socials {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.hero-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.hero-social-link:hover {
+  background: rgba(200, 155, 75, 0.12);
+  border-color: rgba(200, 155, 75, 0.4);
+  color: #c89b4b;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   IMAGE (RIGHT)
+========================================= */
+
+.hero-image-wrap {
+  flex-shrink: 0;
+  width: 42%;
+  max-width: 440px;
+  animation: hero-fade-in 1s ease 0.2s both;
+}
+
+.hero-image-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(0, 20, 16, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1024px) {
+  .hero-container {
+    padding: calc(var(--nav-height) + 2.5rem) 2.5rem 3rem;
+    gap: 2rem;
+  }
+
+  .hero-image-wrap {
+    width: 38%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .hero-roles {
+    justify-content: center;
+  }
+
+  .hero-bio {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-image-wrap {
+    width: 65%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding: calc(var(--nav-height) + 1.5rem) 1.25rem 2.5rem;
+  }
+
+  .hero-image-wrap {
+    width: 75%;
+    max-width: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero-image-wrap {
+    animation: none;
+  }
+}

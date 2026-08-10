@@ -1,0 +1,107 @@
+:root {
+  /* =========================
+     COLOR - LIGHT MODE
+     ========================= */
+
+  /* Nền tổng thể */
+  --color-bg: #f5f2eb;
+  --color-bg-soft: #ebe7dd;
+
+  /* Màu xanh chủ đạo */
+  --color-dark: #003c39;
+  --color-dark-2: #00504b;
+  --color-dark-3: #07332f;
+
+  /* Màu vàng champagne */
+  --color-primary: #c89b4b;
+  --color-primary-soft: #e1c27d;
+  --color-primary-glow: rgba(200, 155, 75, 0.35);
+
+  /* Accent (blue-green) */
+  --color-accent: #4a9e8e;
+  --color-accent-soft: #6bbdad;
+  --color-accent-glow: rgba(74, 158, 142, 0.35);
+
+  /* Màu chữ */
+  --color-text: #123b39;
+  --color-text-dark: #102f2d;
+  --color-text-muted: #66716f;
+
+  /* Card */
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8f6f1;
+
+  /* Border */
+  --color-border: #ded8cc;
+  --color-border-dark: rgba(200, 155, 75, 0.35);
+
+  /* =========================
+     COLOR - DARK SECTIONS
+     ========================= */
+
+  /* Dark hero & sections */
+  --color-dark-bg: #001e1a;
+  --color-dark-bg-2: #002a25;
+  --color-dark-bg-3: #00332e;
+  --color-dark-surface: rgba(255, 255, 255, 0.05);
+  --color-dark-border: rgba(255, 255, 255, 0.1);
+  --color-dark-text: rgba(255, 255, 255, 0.9);
+  --color-dark-text-muted: rgba(255, 255, 255, 0.55);
+
+  /* =========================
+     SHADOW
+     ========================= */
+
+  --shadow-sm:
+    0 2px 8px rgba(0, 40, 37, 0.06);
+
+  --shadow-md:
+    0 8px 24px rgba(0, 40, 37, 0.10);
+
+  --shadow-lg:
+    0 18px 45px rgba(0, 40, 37, 0.14);
+
+  --shadow-glow:
+    0 0 20px rgba(200, 155, 75, 0.25);
+
+  --shadow-glow-blue:
+    0 0 20px rgba(74, 158, 142, 0.25);
+
+  /* =========================
+     TYPOGRAPHY
+     ========================= */
+
+  --font-heading:
+    "Playfair Display",
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  --font-body:
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+
+  /* =========================
+     LAYOUT
+     ========================= */
+
+  --nav-height: 72px;
+
+  --container-width: 1440px;
+
+  --content-padding: 32px;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  --transition: 0.3s ease;
+}

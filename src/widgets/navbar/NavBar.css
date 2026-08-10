@@ -1,0 +1,438 @@
+/* =========================================
+   NAVBAR - Dark Theme
+========================================= */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 72px;
+
+  background: rgba(0, 20, 17, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  z-index: 1000;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   NAVBAR SCROLLED
+========================================= */
+
+.nav-bar--scrolled {
+  background: rgba(0, 20, 17, 0.98);
+
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================
+   INNER
+========================================= */
+
+.nav-bar__inner {
+  width: calc(100% - 80px);
+  max-width: 1400px;
+
+  height: 100%;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.nav-bar__logo {
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+
+  letter-spacing: -0.5px;
+
+  color: #c89b4b;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav-bar__logo:hover {
+  color: #e1c27d;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.nav-bar__links {
+  display: flex;
+  align-items: center;
+
+  gap: 2px;
+
+  margin-left: auto;
+}
+
+
+/* =========================================
+   MENU LINK
+========================================= */
+
+.nav-bar__link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;
+
+  padding: 0 11px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-family:
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+
+  text-decoration: none;
+
+  border-radius: 4px;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+
+/* Hover */
+
+.nav-bar__link:hover {
+  color: #c89b4b;
+}
+
+
+/* Active */
+
+.nav-bar__link--active {
+  color: #c89b4b;
+}
+
+
+/* Active underline */
+
+.nav-bar__link--active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 11px;
+  right: 11px;
+
+  bottom: 2px;
+
+  height: 1.5px;
+
+  background: #c89b4b;
+
+  border-radius: 2px;
+}
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+.nav-bar__lang {
+  display: flex;
+  align-items: center;
+
+  margin-left: 20px;
+
+  padding: 3px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Language button */
+
+.nav-bar__lang-btn {
+  min-width: 36px;
+  height: 28px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-family:
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Active language */
+
+.nav-bar__lang-btn--active {
+  background: #c89b4b;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 3px 10px rgba(200, 155, 75, 0.3);
+}
+
+
+/* Hover */
+
+.nav-bar__lang-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-bar__lang-btn--active:hover {
+  color: #ffffff;
+}
+
+
+/* =========================================
+   MOBILE TOGGLE
+========================================= */
+
+.nav-bar__toggle {
+  display: none;
+
+  width: 40px;
+  height: 40px;
+
+  margin-left: 12px;
+
+  padding: 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+
+/* Hamburger */
+
+.nav-bar__toggle span {
+  display: block;
+
+  width: 100%;
+  height: 2px;
+
+  margin: 5px 0;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.nav-bar__progress {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  height: 2px;
+
+  background: linear-gradient(90deg, #c89b4b, #e1c27d);
+
+  transition: width 0.1s linear;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .nav-bar__inner {
+    width: calc(100% - 40px);
+  }
+
+  .nav-bar__links {
+    gap: 0;
+  }
+
+  .nav-bar__link {
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .nav-bar__lang {
+    margin-left: 12px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .nav-bar {
+    height: 64px;
+  }
+
+  .nav-bar__inner {
+    width: calc(100% - 32px);
+  }
+
+
+  /* Logo */
+
+  .nav-bar__logo {
+    font-size: 24px;
+  }
+
+
+  /* Hamburger */
+
+  .nav-bar__toggle {
+    display: block;
+  }
+
+
+  /* Language */
+
+  .nav-bar__lang {
+    margin-left: auto;
+  }
+
+
+  /* Menu */
+
+  .nav-bar__links {
+    position: absolute;
+
+    top: 64px;
+
+    left: 16px;
+    right: 16px;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    margin: 0;
+
+    padding: 8px;
+
+    background: rgba(0, 20, 17, 0.98);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 8px;
+
+    box-shadow:
+      0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
+
+  /* Open */
+
+  .nav-bar__links--open {
+    display: flex;
+  }
+
+
+  /* Mobile link */
+
+  .nav-bar__link {
+    width: 100%;
+
+    height: 44px;
+
+    justify-content: flex-start;
+
+    padding: 0 14px;
+
+    font-size: 12px;
+  }
+
+
+  .nav-bar__link--active {
+    background: rgba(200, 155, 75, 0.1);
+  }
+
+
+  .nav-bar__link--active::after {
+    display: none;
+  }
+}
