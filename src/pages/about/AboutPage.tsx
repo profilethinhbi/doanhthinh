@@ -7,7 +7,7 @@ import TimelineNode from "./components/timeline/Timeline";
 import TechStack from "./components/tech_stack/TechStack";
 import Skill from "./components/skills/Skill";
 
-import profileImage from '@/assets/images/profile-images.jpg';
+import profileImage from '@/assets/images/profile-images.jpeg';
 
 export default function AboutPage() {
   const { t } = useTranslation();
