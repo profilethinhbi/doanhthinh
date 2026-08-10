@@ -65,6 +65,7 @@
   gap: 1.25rem;
   max-width: 440px;
   padding-bottom: 3rem;
+  align-self: center;
   animation: hero-fade-up 0.8s ease both;
 }
 
@@ -99,15 +100,16 @@
 /* Roles */
 .hero-roles {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0;
   margin: -0.25rem 0;
+  white-space: nowrap;
 }
 
 .hero-role {
   font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
