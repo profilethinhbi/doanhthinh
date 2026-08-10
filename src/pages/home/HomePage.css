@@ -86,13 +86,14 @@
 /* Name */
 .hero-name {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.5px;
   color: #ffffff;
   margin: 0;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Roles */
