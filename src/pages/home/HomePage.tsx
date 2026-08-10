@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import "@/pages/home/HomePage.css";
-import profileCard from "@/assets/images/profile-card.png";
+import heroProfile from "@/assets/images/hero-profile.jpg";
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -100,7 +100,7 @@ export default function HomePage() {
         {/* Right: Profile image */}
         <div className="hero-image-wrap">
           <div className="hero-image-frame">
-            <img src={profileCard} alt="Đỗ Anh Thịnh - Portrait" className="hero-image" />
+            <img src={heroProfile} alt="Đỗ Anh Thịnh - Portrait" className="hero-image" />
           </div>
         </div>
       </div>
