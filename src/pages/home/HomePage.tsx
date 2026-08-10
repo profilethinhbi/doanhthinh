@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import "@/pages/home/HomePage.css";
-import heroProfile from "@/assets/images/hero-profile.jpg";
+import heroProfile from "@/assets/images/hero-profile-nobg.png";
 
 export default function HomePage() {
   const { t } = useTranslation();
