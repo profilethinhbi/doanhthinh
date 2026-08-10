@@ -31,7 +31,7 @@ export default function HomePage() {
           <p className="hero-bio">{t("home_page.description")}</p>
 
           <div className="hero-actions">
-            <a href="/profilethinhbi/about" className="hero-btn hero-btn--primary">
+            <a href="/about" className="hero-btn hero-btn--primary">
               {t("home_page.viewProfileButton")}
             </a>
             <a
