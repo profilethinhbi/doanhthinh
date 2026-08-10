@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Left block: Name + title + address */}
         <div className="footer-block footer-block--identity">
           <div className="footer-avatar-wrap">
-            <span className="footer-monogram">NT</span>
+            <span className="footer-monogram">AT</span>
           </div>
           <div>
             <p className="footer-name">Đỗ Anh Thịnh</p>

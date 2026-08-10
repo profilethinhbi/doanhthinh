@@ -50,7 +50,7 @@ export default function NavBar() {
           className="nav-bar__logo"
           onClick={() => setOpen(false)}
         >
-          NT
+          AT
         </NavLink>
 
         <nav className={`nav-bar__links ${open ? "nav-bar__links--open" : ""}`}>
