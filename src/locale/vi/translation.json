@@ -59,43 +59,37 @@
       "timeline": {
         "see_more": "Xem thêm",
         "education": {
-          "high_school": {
-            "period": "2016 - 2019",
-            "title": "Trung học phổ thông",
-            "organization": "Trường THPT",
-            "description": "Bắt đầu hình thành niềm đam mê với công nghệ, điện tử và lập trình thông qua các hoạt động học tập và thực hành."
+          "epu_bachelor": {
+            "period": "09/2019 – 04/2024",
+            "title": "Cử nhân Kỹ thuật Điện tử",
+            "organization": "Trường Đại học Điện Lực (EPU)",
+            "description": "Tốt nghiệp loại Giỏi, GPA 3,3/4. Tập trung nghiên cứu điện tử, hệ thống nhúng, IoT và các giải pháp công nghệ ứng dụng thực tế. Nhận bằng tháng 4 năm 2024."
           },
-          "university": {
-            "period": "2019 - 2023",
-            "title": "Kỹ thuật Điện tử - Viễn thông",
-            "organization": "Đại học",
-            "description": "Theo học chuyên ngành Kỹ thuật Điện tử - Viễn thông, tập trung nghiên cứu các kiến thức về điện tử, viễn thông, hệ thống nhúng, xử lý tín hiệu và các hệ thống IoT."
-          },
-          "master": {
-            "period": "2023 - 2025",
-            "title": "Thạc sĩ Kỹ thuật điện tử",
-            "organization": "Chương trình đào tạo sau đại học",
-            "description": "Nghiên cứu chuyên sâu về kỹ thuật điện tử, hệ thống nhúng, IoT và các giải pháp giám sát, điều khiển ứng dụng trong thực tế."
+          "epu_master": {
+            "period": "2024 – nay",
+            "title": "Thạc sĩ Kỹ thuật Điện tử",
+            "organization": "Trường Đại học Điện Lực (EPU)",
+            "description": "Học viên cao học ngành Kỹ thuật Điện tử, nghiên cứu chuyên sâu về hệ thống nhúng, IoT và các giải pháp giám sát – điều khiển. Đang trong giai đoạn hoàn thiện luận văn và chờ nhận bằng Thạc sĩ."
           }
         },
         "experience": {
-          "research": {
-            "period": "2023 - nay",
-            "title": "Nghiên cứu & phát triển",
-            "organization": "Điện tử - IoT - Embedded Systems",
-            "description": "Nghiên cứu và phát triển các hệ thống điện tử, IoT và hệ thống nhúng. Tập trung vào thiết kế phần cứng, thu thập dữ liệu cảm biến, truyền thông, xử lý dữ liệu và xây dựng hệ thống giám sát."
+          "kidscode": {
+            "period": "11/2020 – 07/2023",
+            "title": "Nhân viên Kỹ thuật",
+            "organization": "Công ty Cổ phần Phát triển Giáo dục Kidscode",
+            "description": "Đảm nhiệm các công việc kỹ thuật bao gồm lắp ráp và lập trình robot giáo dục, giảng dạy STEM cho học sinh, và hỗ trợ triển khai các dự án Khoa học Kỹ thuật (KHKT) tại các trường học."
           },
-          "iot": {
-            "period": "2023 - nay",
-            "title": "Kỹ sư IoT & hệ thống nhúng",
-            "organization": "Dự án cá nhân & nghiên cứu",
-            "description": "Phát triển các hệ thống IoT sử dụng vi điều khiển và cảm biến, kết nối thiết bị với máy chủ thông qua MQTT, HTTP và các nền tảng lưu trữ dữ liệu."
+          "stemvn": {
+            "period": "07/2023 – 01/2025",
+            "title": "Nhân viên Kỹ thuật",
+            "organization": "Công ty TNHH Phát triển Công nghệ STEMVN",
+            "description": "Tiếp tục phát triển trong lĩnh vực giáo dục STEM và robotics: lắp ráp và lập trình robot, giảng dạy STEM, thiết kế và hướng dẫn học sinh thực hiện các đề tài nghiên cứu Khoa học Kỹ thuật cấp tỉnh và cấp quốc gia."
           },
-          "freelancer": {
-            "period": "2024 - nay",
-            "title": "Kỹ sư điện tử & phát triển giải pháp",
-            "organization": "Tự do",
-            "description": "Thực hiện các dự án liên quan đến phát triển phần mềm, tích hợp phần cứng, IoT, thiết kế PCB, thiết kế 3D và các giải pháp công nghệ theo yêu cầu."
+          "livestream": {
+            "period": "02/2025 – nay",
+            "title": "Nhân sự",
+            "organization": "Công ty Cổ phần Truyền thông và Công nghệ Livestream Toàn Cầu",
+            "description": "Tham gia vào bộ phận nhân sự, hỗ trợ các hoạt động vận hành và phát triển nguồn nhân lực tại công ty hoạt động trong lĩnh vực truyền thông và công nghệ livestream."
           }
         }
       }

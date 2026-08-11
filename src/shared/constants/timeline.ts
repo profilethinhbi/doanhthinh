@@ -2,11 +2,11 @@ import type { TimelineItem } from "@shared/types/timeline";
 
 export const timeline: TimelineItem[] = [
   {
-    id: "education.high_school",
+    id: "education.epu_bachelor",
     type: "education",
   },
   {
-    id: "education.ptit",
+    id: "education.epu_master",
     type: "education",
   },
   {
@@ -14,15 +14,11 @@ export const timeline: TimelineItem[] = [
     type: "experience",
   },
   {
-    id: "experience.partime_teacher",
-    type: "experience",
-  },
-  {
     id: "experience.stemvn",
     type: "experience",
   },
   {
-    id: "experience.freelancer",
+    id: "experience.livestream",
     type: "experience",
   },
 ];

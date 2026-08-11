@@ -59,37 +59,37 @@
       "timeline": {
         "see_more": "See more",
         "education": {
-          "high_school": {
-            "period": "2016 - 2019",
-            "title": "🏫 High School",
-            "organization": "High School",
-            "description": "Built an early interest in science, technology, and electronics, creating the foundation for later engineering studies."
+          "epu_bachelor": {
+            "period": "Sep 2019 – Apr 2024",
+            "title": "B.Eng. in Electronics Engineering",
+            "organization": "Electric Power University (EPU)",
+            "description": "Graduated with Distinction, GPA 3.3/4. Focused on electronics, embedded systems, IoT and applied technology solutions. Degree awarded April 2024."
           },
-          "ptit": {
-            "period": "2019 - 2023",
-            "title": "🎓 Electronics & Telecommunications",
-            "organization": "Electric Power University",
-            "description": "Studied electronics and telecommunications, developing knowledge in embedded systems, electronics, communication technologies, and IoT."
+          "epu_master": {
+            "period": "2024 – Present",
+            "title": "M.Sc. in Electronics Engineering",
+            "organization": "Electric Power University (EPU)",
+            "description": "Master's candidate in Electronics Engineering, conducting advanced research in embedded systems, IoT and monitoring/control solutions. Currently completing thesis and awaiting graduation."
           }
         },
         "experience": {
-          "research": {
-            "period": "2023 - 2024",
-            "title": "🔬 Research & Projects",
-            "organization": "Electronics & Telecommunications",
-            "description": "Worked on electronics, embedded systems, IoT, robotics, and sensor-based projects, combining hardware and software."
+          "kidscode": {
+            "period": "Nov 2020 – Jul 2023",
+            "title": "Technical Staff",
+            "organization": "Kidscode Education Development JSC",
+            "description": "Responsible for assembling and programming educational robots, teaching STEM curricula to students, and supporting the implementation of Science & Engineering projects (KHKT) at schools."
           },
-          "graduate": {
-            "period": "2024 - 2026",
-            "title": "🎓 Master's Study",
-            "organization": "Electronics Engineering",
-            "description": "Continued developing expertise in electronics, embedded systems, IoT, and research-oriented engineering projects."
+          "stemvn": {
+            "period": "Jul 2023 – Jan 2025",
+            "title": "Technical Staff",
+            "organization": "STEMVN Technology Development Co., Ltd.",
+            "description": "Continued work in STEM education and robotics: programming robots, delivering STEM lessons, and mentoring students through Science & Engineering research projects at provincial and national levels."
           },
-          "freelancer": {
-            "period": "2025 - Present",
-            "title": "💻 Technical Projects",
-            "organization": "Independent",
-            "description": "Developing and supporting electronics, embedded, IoT, web, and technical projects, from hardware prototyping and sensor integration to software and system interfaces."
+          "livestream": {
+            "period": "Feb 2025 – Present",
+            "title": "HR Staff",
+            "organization": "Global Livestream Media & Technology JSC",
+            "description": "Working in the Human Resources department, supporting operational activities and talent development at a company specialising in livestream media and technology."
           }
         }
       }
