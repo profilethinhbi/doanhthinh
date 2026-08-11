@@ -15,38 +15,30 @@ const EDU_DATA: EduItem[] = [
   {
     year: "2019",
     icon: "🎓",
-    school: "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
-    major: "Kỹ thuật Điện tử - Viễn thông",
-    gpa: "3.45/4.0",
+    school: "Trường Đại học Điện Lực (EPU)",
+    major: "Kỹ Sư Mạng Viễn Thông và Máy Tính — Khoa Điện tử Viễn thông",
+    gpa: "3,3/4 — Tốt nghiệp loại Giỏi (04/2024)",
     bullets: [
-      "Đồ án tốt nghiệp: Hệ thống giám sát năng lượng sử dụng IoT",
-      "Thành viên CLB Điện tử - Robotics",
+      "Học bổng khuyến học năm học 2020–2021 và 2023–2024",
+      "NCKH: \"Nghiên cứu xây dựng hệ thống IoT giám sát tiêu thụ điện và nước ứng dụng để quản lý phòng trọ sinh viên\" (07/2024)",
+      "Tập trung các môn: Điện tử, Hệ thống nhúng, Mạng viễn thông, IoT, Lập trình nhúng",
     ],
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/PTIT_logo.jpg/240px-PTIT_logo.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/vi/thumb/6/60/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png/220px-Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png",
   },
   {
-    year: "2023",
+    year: "2024",
     icon: "🎓",
-    school: "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
-    major: "Thạc sĩ Kỹ thuật điện tử",
-    gpa: "3.78/4.0",
+    school: "Trường Đại học Điện Lực (EPU)",
+    major: "Thạc sĩ Kỹ thuật Điện tử — Khoa Điện tử Viễn thông",
     bullets: [
-      "Hướng nghiên cứu: Hệ thống nhúng và IoT",
-      "Luận văn: Nghiên cứu và thiết kế hệ thống giám sát điện năng thông minh",
+      "Học viên cao học chuyên ngành Kỹ thuật Điện tử",
+      "Hướng nghiên cứu: Hệ thống nhúng, IoT và giải pháp giám sát – điều khiển",
+      "Đang hoàn thiện luận văn và chờ nhận bằng Thạc sĩ",
     ],
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/PTIT_logo.jpg/240px-PTIT_logo.jpg",
-  },
-  {
-    year: "2025",
-    icon: "🔬",
-    school: "Trung tâm Nghiên cứu Điện tử",
-    major: "Nghiên cứu viên",
-    bullets: [
-      "Tham gia đề tài cấp Bộ về IoT",
-      "Phát triển các giải pháp giám sát và điều khiển thông minh",
-    ],
+    image: "https://upload.wikimedia.org/wikipedia/vi/thumb/6/60/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png/220px-Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png",
   },
 ];
+
 
 export default function EducationPage() {
   const { t } = useTranslation();
