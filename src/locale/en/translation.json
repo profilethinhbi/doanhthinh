@@ -61,15 +61,15 @@
         "education": {
           "epu_bachelor": {
             "period": "Sep 2019 – Apr 2024",
-            "title": "B.Eng. in Electronics Engineering",
-            "organization": "Electric Power University (EPU)",
+            "title": "B.Eng. — Telecommunications & Computer Networks",
+            "organization": "Faculty of Electronics & Telecommunications — Electric Power University (EPU)",
             "description": "Graduated with Distinction, GPA 3.3/4 (degree awarded April 2024). Received merit scholarships for the 2020–2021 and 2023–2024 academic years. Research project: \"IoT System for Monitoring Electricity and Water Consumption Applied to Student Dormitory Management\" (Jul 2024)."
           },
           "epu_master": {
             "period": "2024 – Present",
-            "title": "M.Sc. in Electronics Engineering",
-            "organization": "Electric Power University (EPU)",
-            "description": "Master's candidate in Electronics Engineering, conducting advanced research in embedded systems, IoT and monitoring/control solutions. Currently completing thesis and awaiting graduation."
+            "title": "M.Sc. — Electronics Engineering",
+            "organization": "Faculty of Electronics & Telecommunications — Electric Power University (EPU)",
+            "description": "Master's candidate specialising in Electronics Engineering, conducting advanced research in embedded systems, IoT and monitoring/control solutions. Currently completing thesis and awaiting graduation."
           }
         },
         "experience": {
