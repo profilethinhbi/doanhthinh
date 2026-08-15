@@ -11,7 +11,11 @@
   "home_page": {
     "badge": "Thạc sĩ Kỹ thuật Điện tử",
     "name": "Đỗ Anh Thịnh",
-    "roles": ["Kỹ sư Điện tử", "Nghiên cứu viên", "Nhà sáng tạo"],
+    "roles": [
+      "Kỹ sư Điện tử",
+      "Nghiên cứu viên",
+      "Nhà sáng tạo"
+    ],
     "greeting": "Xin chào, mình là Đỗ Anh Thịnh",
     "description": "Tôi nghiên cứu và phát triển các hệ thống điện tử, IoT, hệ thống nhúng và các giải pháp công nghệ ứng dụng trong thực tế.",
     "viewProfileButton": "Xem hồ sơ",
@@ -22,9 +26,83 @@
     "title": "Quá trình học tập"
   },
   "achievements_page": {
-    "title": "Thành tích nổi bật",
+    "title": "Mốc thời gian & Thành tựu",
     "viewDetail": "Xem chi tiết",
-    "journeyTitle": "Hành trình phát triển"
+    "journeyTitle": "Hành trình phát triển",
+    "items": [
+      {
+        "type": "education",
+        "title": "Hoàn thành đề án Thạc sĩ",
+        "event": "Trường Đại học Điện Lực (EPU)",
+        "description": "Đã bảo vệ thành công Đề án tốt nghiệp Thạc sĩ chuyên ngành Kỹ thuật Điện tử và đang chờ nhận bằng Thạc sĩ.",
+        "year": 2026,
+        "imageKey": "epu_master"
+      },
+      {
+        "type": "experience",
+        "title": "Nhân sự Livestream Toàn Cầu",
+        "event": "Công ty CP Truyền thông và Công nghệ Livestream Toàn Cầu",
+        "description": "Tham gia vào bộ phận nhân sự, hỗ trợ hoạt động vận hành và quản lý nguồn nhân lực tại công ty hoạt động trong lĩnh vực truyền thông & công nghệ livestream.",
+        "year": 2025,
+        "imageKey": "livestream"
+      },
+      {
+        "type": "research",
+        "title": "Nghiên cứu khoa học IoT",
+        "event": "Đề tài Nghiên cứu Khoa học",
+        "description": "Nghiên cứu xây dựng hệ thống IoT giám sát tiêu thụ điện và nước ứng dụng để quản lý phòng trọ sinh viên (hoàn thành tháng 07/2024).",
+        "year": 2024,
+        "imageKey": "nckh_iot"
+      },
+      {
+        "type": "scholarship",
+        "title": "Tốt nghiệp loại Giỏi & Học bổng",
+        "event": "Trường Đại học Điện Lực (EPU)",
+        "description": "Tốt nghiệp Kỹ sư loại Giỏi chuyên ngành Mạng Viễn thông và Máy tính, GPA 3.3/4. Nhận học bổng Khuyến học năm học 2023-2024.",
+        "year": 2024,
+        "imageKey": "bachelor_graduation"
+      },
+      {
+        "type": "experience",
+        "title": "Nhân viên Kỹ thuật STEMVN",
+        "event": "Công ty TNHH Phát triển Công nghệ STEMVN",
+        "description": "Lập trình robot giáo dục, giảng dạy STEM và hướng dẫn học sinh thực hiện các dự án Khoa học Kỹ thuật (KHKT).",
+        "year": 2023,
+        "imageKey": "stemvn"
+      },
+      {
+        "type": "experience",
+        "title": "Kỹ thuật Giáo dục Kidscode",
+        "event": "Công ty CP Phát triển Giáo dục Kidscode",
+        "description": "Biên soạn nội dung STEM, lập trình robot giáo dục và hỗ trợ kỹ thuật các đề tài sáng tạo tại các trường học.",
+        "year": 2022,
+        "imageKey": "kidscode"
+      },
+      {
+        "type": "scholarship",
+        "title": "Học bổng Khuyến học EPU",
+        "event": "Năm học 2020-2021 — ĐH Điện Lực",
+        "description": "Đạt thành tích học tập xuất sắc và nhận học bổng khuyến khích học tập từ nhà trường.",
+        "year": 2021,
+        "imageKey": "scholarship_2021"
+      },
+      {
+        "type": "experience",
+        "title": "Gia nhập Kidscode",
+        "event": "Công ty CP Phát triển Giáo dục Kidscode",
+        "description": "Bắt đầu làm việc bán thời gian tại vị trí kỹ thuật, tích lũy kinh nghiệm trong lĩnh vực robotics và giáo dục STEM.",
+        "year": 2020,
+        "imageKey": "kidscode_start"
+      },
+      {
+        "type": "education",
+        "title": "Nhập học Đại học Điện lực",
+        "event": "Khoa Điện tử Viễn thông — EPU",
+        "description": "Bắt đầu học chuyên ngành Kỹ sư Mạng Viễn thông và Máy tính tại trường Đại học Điện Lực.",
+        "year": 2019,
+        "imageKey": "epu_start"
+      }
+    ]
   },
   "publications_page": {
     "title": "Công bố khoa học",
@@ -69,7 +147,7 @@
             "period": "2024 – nay",
             "title": "Thạc sĩ — Kỹ thuật Điện tử",
             "organization": "Khoa Điện tử Viễn thông — Trường Đại học Điện Lực (EPU)",
-            "description": "Học viên cao học chuyên ngành Kỹ thuật Điện tử, nghiên cứu chuyên sâu về hệ thống nhúng, IoT và các giải pháp giám sát – điều khiển. Đang trong giai đoạn hoàn thiện luận văn và chờ nhận bằng Thạc sĩ."
+            "description": "Học viên cao học chuyên ngành Kỹ thuật Điện tử, nghiên cứu chuyên sâu về hệ thống nhúng, IoT và các giải pháp giám sát – điều khiển. Đã bảo vệ Đề án tốt nghiệp Thạc sĩ và chờ nhận bằng Thạc sĩ."
           }
         },
         "experience": {

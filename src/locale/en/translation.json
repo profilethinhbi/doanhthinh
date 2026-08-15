@@ -22,9 +22,83 @@
     "title": "Education"
   },
   "achievements_page": {
-    "title": "Achievements",
+    "title": "Milestones & Achievements",
     "viewDetail": "View Detail",
-    "journeyTitle": "Development Journey"
+    "journeyTitle": "Development Journey",
+    "items": [
+      {
+        "type": "education",
+        "title": "Master's Thesis Defense",
+        "event": "Electric Power University (EPU)",
+        "description": "Successfully defended the Master's graduation thesis in Electronics Engineering and awaiting the degree.",
+        "year": 2026,
+        "imageKey": "epu_master"
+      },
+      {
+        "type": "experience",
+        "title": "Global Livestream HR Staff",
+        "event": "Global Livestream Media & Technology JSC",
+        "description": "Joined the HR department, supporting operational activities and talent management at a livestream media & technology firm.",
+        "year": 2025,
+        "imageKey": "livestream"
+      },
+      {
+        "type": "research",
+        "title": "Scientific Research Project",
+        "event": "IoT Research Project Completion",
+        "description": "Completed research and construction of an IoT system for monitoring electricity and water consumption (Jul 2024).",
+        "year": 2024,
+        "imageKey": "nckh_iot"
+      },
+      {
+        "type": "scholarship",
+        "title": "Graduation with Distinction & Scholarship",
+        "event": "Electric Power University (EPU)",
+        "description": "Graduated B.Eng. with Distinction in Telecommunications & Computer Networks, GPA 3.3/4. Received academic scholarship for 2023-2024.",
+        "year": 2024,
+        "imageKey": "bachelor_graduation"
+      },
+      {
+        "type": "experience",
+        "title": "STEMVN Technical Staff",
+        "event": "STEMVN Technology Development Co., Ltd.",
+        "description": "Responsible for robot programming, STEM teaching, and guiding students in Science & Engineering projects.",
+        "year": 2023,
+        "imageKey": "stemvn"
+      },
+      {
+        "type": "experience",
+        "title": "Kidscode Technical Staff",
+        "event": "Kidscode Education Development JSC",
+        "description": "Designed STEM lesson plans, programmed educational robots, and provided technical support to partner schools.",
+        "year": 2022,
+        "imageKey": "kidscode"
+      },
+      {
+        "type": "scholarship",
+        "title": "Academic Merit Scholarship",
+        "event": "Academic Year 2020-2021 — EPU",
+        "description": "Earned outstanding academic marks and received the official university merit scholarship.",
+        "year": 2021,
+        "imageKey": "scholarship_2021"
+      },
+      {
+        "type": "experience",
+        "title": "Joined Kidscode",
+        "event": "Kidscode Education Development JSC",
+        "description": "Began gaining real-world experience as a technical staff supporting STEM and robotics classes.",
+        "year": 2020,
+        "imageKey": "kidscode_start"
+      },
+      {
+        "type": "education",
+        "title": "Entered University",
+        "event": "Faculty of Electronics & Telecommunications — EPU",
+        "description": "Started B.Eng. in Telecommunications & Computer Networks at Electric Power University.",
+        "year": 2019,
+        "imageKey": "epu_start"
+      }
+    ]
   },
   "publications_page": {
     "title": "Publications",
