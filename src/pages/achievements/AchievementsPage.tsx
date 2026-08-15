@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./AchievementsPage.css";
 import bachelorGraduation from "@/assets/images/bachelor-graduation.jpg";
+import epuBuilding from "@/assets/images/epu-building.jpg";
 
 interface Achievement {
   type: "education" | "experience" | "research" | "scholarship";
@@ -21,7 +22,7 @@ const IMAGE_MAP: Record<string, string> = {
   kidscode: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=80",
   scholarship_2021: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
   kidscode_start: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
-  epu_start: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=600&q=80"
+  epu_start: epuBuilding
 };
 
 const TROPHY_COLORS: Record<string, string> = {

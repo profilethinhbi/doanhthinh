@@ -181,8 +181,8 @@
 /* Thumbnail image */
 .edu-card-img {
   flex-shrink: 0;
-  width: 200px;
-  height: 125px;
+  width: 145px;
+  height: 210px;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -192,7 +192,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
 }
 
 /* =========================================
@@ -219,14 +219,14 @@
   }
 
   .edu-card {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Put image at the top or bottom, column-reverse puts text top and image bottom, or column puts image top */
     gap: 1.25rem;
     padding: 1.25rem;
   }
 
   .edu-card-img {
-    width: 100%;
-    height: 150px;
-    align-self: stretch;
+    width: 145px;
+    height: 210px;
+    align-self: center;
   }
 }

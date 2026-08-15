@@ -92,11 +92,12 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   animation: ach-fade-in 0.4s ease;
+  height: 350px;
 }
 
 .ach-featured-media {
   position: relative;
-  min-height: 280px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -108,11 +109,12 @@
 }
 
 .ach-featured-content {
-  padding: 2rem 2rem 2rem 0.5rem;
+  padding: 2.25rem 2.25rem 2.25rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+  height: 100%;
 }
 
 .ach-badge-row {
@@ -338,14 +340,16 @@
 
   .ach-featured {
     grid-template-columns: 1fr;
+    height: auto;
   }
 
   .ach-featured-media {
-    min-height: 200px;
+    height: 220px;
   }
 
   .ach-featured-content {
     padding: 1.5rem;
+    height: auto;
   }
 
   .ach-secondary-grid {
