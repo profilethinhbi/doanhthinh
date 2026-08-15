@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import "./EducationPage.css";
+import bachelorGraduation from "@/assets/images/bachelor-graduation.jpg";
 
 interface EduItem {
   year: string;
@@ -9,6 +10,7 @@ interface EduItem {
   gpa?: string;
   bullets: string[];
   image?: string;
+  imageFit?: "cover" | "contain";
 }
 
 const EDU_DATA: EduItem[] = [
@@ -23,7 +25,8 @@ const EDU_DATA: EduItem[] = [
       "NCKH: \"Nghiên cứu xây dựng hệ thống IoT giám sát tiêu thụ điện và nước ứng dụng để quản lý phòng trọ sinh viên\" (07/2024)",
       "Tập trung các môn: Điện tử, Hệ thống nhúng, Mạng viễn thông, IoT, Lập trình nhúng",
     ],
-    image: "https://upload.wikimedia.org/wikipedia/vi/thumb/6/60/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png/220px-Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png",
+    image: bachelorGraduation,
+    imageFit: "cover",
   },
   {
     year: "2024",
@@ -33,9 +36,10 @@ const EDU_DATA: EduItem[] = [
     bullets: [
       "Học viên cao học chuyên ngành Kỹ thuật Điện tử",
       "Hướng nghiên cứu: Hệ thống nhúng, IoT và giải pháp giám sát – điều khiển",
-      "Đang hoàn thiện luận văn và chờ nhận bằng Thạc sĩ",
+      "Đã bảo vệ đề án tốt nghiệp Thạc sĩ và chờ nhận bằng Thạc sĩ",
     ],
     image: "https://upload.wikimedia.org/wikipedia/vi/thumb/6/60/Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png/220px-Logo_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_%C4%90i%E1%BB%87n_l%E1%BB%B1c.png",
+    imageFit: "contain",
   },
 ];
 
@@ -80,7 +84,11 @@ export default function EducationPage() {
 
                   {item.image && (
                     <div className="edu-card-img">
-                      <img src={item.image} alt={item.school} />
+                      <img 
+                        src={item.image} 
+                        alt={item.school} 
+                        style={item.imageFit ? { objectFit: item.imageFit } : undefined}
+                      />
                     </div>
                   )}
                 </div>

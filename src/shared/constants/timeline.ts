@@ -6,16 +6,16 @@ export const timeline: TimelineItem[] = [
     type: "education",
   },
   {
-    id: "education.epu_master",
-    type: "education",
-  },
-  {
     id: "experience.kidscode",
     type: "experience",
   },
   {
     id: "experience.stemvn",
     type: "experience",
+  },
+  {
+    id: "education.epu_master",
+    type: "education",
   },
   {
     id: "experience.livestream",
