@@ -356,6 +356,11 @@
           "label": "Facebook",
           "href": "https://www.facebook.com/thinhbi276",
           "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/></svg>"
+        },
+        {
+          "label": "Zalo",
+          "href": "https://zalo.me/0896533332",
+          "icon": "<svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'><path d='M12 0C5.373 0 0 4.195 0 9.375c0 2.585 1.144 4.912 3 6.643V24l5.357-4.321c1.214.321 2.507.536 3.643.536 6.627 0 12-4.195 12-9.375C24 4.195 18.627 0 12 0zm.429 13.5H9.643l3.214-4.286H9.643V6.429h5.571l-3.214 4.286h2.786z'/></svg>"
         }
       ]
     },

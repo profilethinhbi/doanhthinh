@@ -68,6 +68,28 @@ export default function HomePage() {
                 <polyline points="22,6 12,13 2,6" />
               </svg>
             </a>
+            {/* Phone */}
+            <a
+              href="tel:0896533332"
+              className="hero-social-link"
+              aria-label="Phone"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 10a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 0h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.08 6.08l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 14.92z" />
+              </svg>
+            </a>
+            {/* Zalo */}
+            <a
+              href="https://zalo.me/0896533332"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+              aria-label="Zalo"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 4.195 0 9.375c0 2.585 1.144 4.912 3 6.643V24l5.357-4.321c1.214.321 2.507.536 3.643.536 6.627 0 12-4.195 12-9.375C24 4.195 18.627 0 12 0zm.429 13.5H9.643l3.214-4.286H9.643V6.429h5.571l-3.214 4.286h2.786z" />
+              </svg>
+            </a>
             {/* Google Scholar */}
             <a
               href="https://scholar.google.com"
