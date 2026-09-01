@@ -146,22 +146,22 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
           {/* Islands Layer: Hoàng Sa & Trường Sa */}
           <g className="map-islands-layer">
             {/* Quần đảo Hoàng Sa (Paracel Islands) */}
-            <g className="island-group hoang-sa" transform="translate(390, 330)">
-              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="12" cy="-6" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="8" cy="10" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <text x="18" y="4" className="island-text" fill="rgba(200, 155, 75, 0.95)" fontSize="11" fontWeight="600">
+            <g className="island-group hoang-sa" transform="translate(360, 335)">
+              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <circle cx="12" cy="-6" r="3.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <circle cx="8" cy="10" r="3.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <text x="0" y="24" textAnchor="middle" className="island-text" fill="#c89b4b" fontSize="11" fontWeight="700">
                 QĐ. Hoàng Sa (Việt Nam)
               </text>
             </g>
 
             {/* Quần đảo Trường Sa (Spratly Islands) */}
-            <g className="island-group truong-sa" transform="translate(380, 560)">
-              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="18" cy="12" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="-12" cy="24" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="22" cy="32" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
-              <text x="-25" y="48" className="island-text" fill="rgba(200, 155, 75, 0.95)" fontSize="11" fontWeight="600">
+            <g className="island-group truong-sa" transform="translate(360, 570)">
+              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <circle cx="18" cy="12" r="3.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <circle cx="-12" cy="24" r="3.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <circle cx="22" cy="32" r="4.5" fill="rgba(200, 155, 75, 0.85)" stroke="#c89b4b" strokeWidth="1.2" />
+              <text x="5" y="48" textAnchor="middle" className="island-text" fill="#c89b4b" fontSize="11" fontWeight="700">
                 QĐ. Trường Sa (Việt Nam)
               </text>
             </g>
