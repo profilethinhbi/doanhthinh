@@ -81,7 +81,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
       {/* SVG Map Canvas */}
       <div className="map-svg-wrapper">
         <svg
-          viewBox="0 0 500 850"
+          viewBox="0 0 500 750"
           className="vietnam-map-svg"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -92,8 +92,8 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
             </linearGradient>
 
             <linearGradient id="activeProvinceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#005e4d" />
-              <stop offset="100%" stopColor="#003b30" />
+              <stop offset="0%" stopColor="#006352" />
+              <stop offset="100%" stopColor="#003d32" />
             </linearGradient>
 
             <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
@@ -104,17 +104,16 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 
           {/* Decorative Grid Lines */}
           <g className="map-grid-lines" stroke="rgba(200, 155, 75, 0.08)" strokeWidth="0.5" strokeDasharray="3 3">
-            <line x1="50" y1="0" x2="50" y2="850" />
-            <line x1="150" y1="0" x2="150" y2="850" />
-            <line x1="250" y1="0" x2="250" y2="850" />
-            <line x1="350" y1="0" x2="350" y2="850" />
-            <line x1="450" y1="0" x2="450" y2="850" />
+            <line x1="50" y1="0" x2="50" y2="750" />
+            <line x1="150" y1="0" x2="150" y2="750" />
+            <line x1="250" y1="0" x2="250" y2="750" />
+            <line x1="350" y1="0" x2="350" y2="750" />
+            <line x1="450" y1="0" x2="450" y2="750" />
 
             <line x1="0" y1="150" x2="500" y2="150" />
             <line x1="0" y1="300" x2="500" y2="300" />
             <line x1="0" y1="450" x2="500" y2="450" />
             <line x1="0" y1="600" x2="500" y2="600" />
-            <line x1="0" y1="750" x2="500" y2="750" />
           </g>
 
           {/* Render 63 Authentic Vietnam Province Vector Paths */}
@@ -131,8 +130,8 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   d={prov.path}
                   className={`province-path ${isActive ? "has-activity" : ""} ${isHovered ? "hovered" : ""}`}
                   fill={isActive ? "url(#activeProvinceGradient)" : "url(#provinceGradient)"}
-                  stroke={isHovered ? "#c89b4b" : isActive ? "rgba(74, 158, 142, 0.6)" : "rgba(255, 255, 255, 0.12)"}
-                  strokeWidth={isHovered ? 1.5 : isActive ? 1 : 0.5}
+                  stroke={isHovered ? "#c89b4b" : isActive ? "rgba(74, 158, 142, 0.7)" : "rgba(255, 255, 255, 0.12)"}
+                  strokeWidth={isHovered ? 1.8 : isActive ? 1.2 : 0.5}
                   onMouseEnter={() => setHoveredProvinceId(prov.id)}
                   onMouseLeave={() => setHoveredProvinceId(null)}
                   onClick={() => {
@@ -147,22 +146,22 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
           {/* Islands Layer: Hoàng Sa & Trường Sa */}
           <g className="map-islands-layer">
             {/* Quần đảo Hoàng Sa (Paracel Islands) */}
-            <g className="island-group hoang-sa" transform="translate(390, 410)">
-              <circle cx="0" cy="0" r="4" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="12" cy="-6" r="3" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="8" cy="10" r="3" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <text x="18" y="4" className="island-text" fill="rgba(200, 155, 75, 0.9)" fontSize="10" fontWeight="600">
+            <g className="island-group hoang-sa" transform="translate(390, 330)">
+              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <circle cx="12" cy="-6" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <circle cx="8" cy="10" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <text x="18" y="4" className="island-text" fill="rgba(200, 155, 75, 0.95)" fontSize="11" fontWeight="600">
                 QĐ. Hoàng Sa (Việt Nam)
               </text>
             </g>
 
             {/* Quần đảo Trường Sa (Spratly Islands) */}
-            <g className="island-group truong-sa" transform="translate(370, 710)">
-              <circle cx="0" cy="0" r="4" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="18" cy="12" r="3" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="-12" cy="24" r="3" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <circle cx="22" cy="32" r="4" fill="rgba(200, 155, 75, 0.7)" stroke="#c89b4b" strokeWidth="1" />
-              <text x="-25" y="48" className="island-text" fill="rgba(200, 155, 75, 0.9)" fontSize="10" fontWeight="600">
+            <g className="island-group truong-sa" transform="translate(380, 560)">
+              <circle cx="0" cy="0" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <circle cx="18" cy="12" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <circle cx="-12" cy="24" r="3.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <circle cx="22" cy="32" r="4.5" fill="rgba(200, 155, 75, 0.8)" stroke="#c89b4b" strokeWidth="1" />
+              <text x="-25" y="48" className="island-text" fill="rgba(200, 155, 75, 0.95)" fontSize="11" fontWeight="600">
                 QĐ. Trường Sa (Việt Nam)
               </text>
             </g>
@@ -195,16 +194,16 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   <circle className="pulse-ring-outer" r="22" />
 
                   {/* Center Pin Marker */}
-                  <circle className="pin-core" r="7" filter="url(#glow)" />
+                  <circle className="pin-core" r="8" filter="url(#glow)" />
 
                   {/* Badge Count Indicator */}
-                  <circle className="pin-badge-bg" cx="8" cy="-8" r="8" fill="#c89b4b" />
+                  <circle className="pin-badge-bg" cx="9" cy="-9" r="8.5" fill="#c89b4b" />
                   <text
-                    x="8"
-                    y="-5"
+                    x="9"
+                    y="-6"
                     textAnchor="middle"
                     fill="#001410"
-                    fontSize="10"
+                    fontSize="11"
                     fontWeight="bold"
                   >
                     {activeData.matchingCount}
@@ -212,11 +211,11 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 
                   {/* Province Name Label */}
                   <text
-                    x="14"
+                    x="15"
                     y="4"
                     className="province-label"
                     fill="#ffffff"
-                    fontSize="11"
+                    fontSize="12"
                     fontWeight="600"
                   >
                     {prov.name}
@@ -233,7 +232,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
             className="map-tooltip"
             style={{
               left: `${(hoveredProvinceObj.pathObj.center.x / 500) * 100}%`,
-              top: `${(hoveredProvinceObj.pathObj.center.y / 850) * 100}%`,
+              top: `${(hoveredProvinceObj.pathObj.center.y / 750) * 100}%`,
             }}
           >
             <div className="tooltip-header">
