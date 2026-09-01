@@ -239,8 +239,8 @@
   },
   "projects_page": {
     "hero": {
-      "title": "Projects",
-      "subtitle": "The projects I have worked on, including personal projects, academic projects, and professional work."
+      "title": "Projects & Research",
+      "subtitle": "Interactive map of teacher training workshops, Science & Tech (KHKT) student competition coaching, and technology research deployments across Vietnam."
     },
     "filter_label": "Filter by tag",
     "filter_all": "All",
