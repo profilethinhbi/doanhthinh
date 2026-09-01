@@ -1,4 +1,7 @@
 import type { ProvinceData } from "@type/map";
+import epuBuilding from "@/assets/images/epu-building.jpg";
+import bachelorGrad from "@/assets/images/bachelor-graduation.jpg";
+import profileImg from "@/assets/images/profile-images.jpeg";
 
 export const provinceDataList: ProvinceData[] = [
   {
@@ -16,7 +19,9 @@ export const provinceDataList: ProvinceData[] = [
         role: "Báo cáo viên / Giảng viên chính",
         description: "Tập huấn nâng cao năng lực cho hơn 200 giáo viên THPT về thiết kế bài giảng STEM, tích hợp cảm biến IoT và ứng dụng vi điều khiển ESP32.",
         organization: "Hội Tin học & Các Trường THPT Chuyên",
-        tags: ["STEM", "IoT", "ESP32", "Giáo dục"]
+        tags: ["STEM", "IoT", "ESP32", "Giáo dục"],
+        image: epuBuilding,
+        proofLink: "https://github.com/mellivora24"
       },
       {
         id: "hn-2",
@@ -27,7 +32,9 @@ export const provinceDataList: ProvinceData[] = [
         role: "Cố vấn Kỹ thuật / Người hướng dẫn",
         description: "Hướng dẫn học sinh nghiên cứu giải pháp điều phối giao thông thông minh sử dụng thuật toán YOLO trên Raspberry Pi.",
         achievements: ["Giải Nhất Cuộc thi KHKT Cấp Thành phố", "Giải Nhì Cuộc thi KHKT Cấp Quốc gia"],
-        tags: ["AI", "YOLO", "Raspberry Pi", "KHKT"]
+        tags: ["AI", "YOLO", "Raspberry Pi", "KHKT"],
+        image: profileImg,
+        proofLink: "https://github.com/mellivora24/SmartTrafficLight"
       },
       {
         id: "hn-3",
@@ -37,7 +44,9 @@ export const provinceDataList: ProvinceData[] = [
         year: "2022 - 2023",
         role: "Chủ nhiệm đề tài / Đợt khảo sát",
         description: "Triển khai lắp đặt trạm quan trắc sạt lở đất địa hình đồi núi thử nghiệm giao thức LoRa kết hợp MQTT.",
-        tags: ["LoRa", "MQTT", "ESP32", "Cảnh báo sớm"]
+        tags: ["LoRa", "MQTT", "ESP32", "Cảnh báo sớm"],
+        image: bachelorGrad,
+        proofLink: "https://github.com/mellivora24/landslide-be"
       }
     ]
   },
@@ -56,7 +65,9 @@ export const provinceDataList: ProvinceData[] = [
         role: "Giảng viên tập huấn",
         description: "Hướng dẫn giáo viên thực hành xây dựng mô hình Robot giáo dục STEMVN BlueControl và lập trình kéo thả.",
         organization: "Sở GD&ĐT Phú Thọ",
-        tags: ["Robotics", "Bluetooth", "App Control"]
+        tags: ["Robotics", "Bluetooth", "App Control"],
+        image: epuBuilding,
+        proofLink: "https://github.com/mellivora24/stemvn-bluecontrol"
       },
       {
         id: "pt-2",
@@ -67,7 +78,9 @@ export const provinceDataList: ProvinceData[] = [
         role: "Cố vấn Chuyên môn",
         description: "Đồng hành cùng học sinh trường THPT Chuyên chế tạo hệ thống giám sát đất trồng và tưới tự động tích hợp IoT.",
         achievements: ["Giải Nhất Cuộc thi KHKT Cấp Tỉnh 2024"],
-        tags: ["Smart Agriculture", "IoT", "KHKT"]
+        tags: ["Smart Agriculture", "IoT", "KHKT"],
+        image: profileImg,
+        proofLink: "https://github.com/mellivora24/SmartAgriculture"
       }
     ]
   },
@@ -85,7 +98,8 @@ export const provinceDataList: ProvinceData[] = [
         year: "2024",
         role: "Chuyên gia huấn luyện",
         description: "Đào tạo phương pháp giảng dạy tích hợp các dự án thực tế về cảm biến và xử lý ảnh cho giáo viên môn Công nghệ/Tin học.",
-        tags: ["AI", "Giáo dục STEM", "Tin học"]
+        tags: ["AI", "Giáo dục STEM", "Tin học"],
+        image: epuBuilding
       }
     ]
   },
@@ -103,7 +117,8 @@ export const provinceDataList: ProvinceData[] = [
         year: "2023",
         role: "Báo cáo viên",
         description: "Chia sẻ kinh nghiệm thiết kế phần cứng vi điều khiển, tối ưu năng lượng cho trạm quan trắc tự động.",
-        tags: ["Embedded System", "Circuit Design"]
+        tags: ["Embedded System", "Circuit Design"],
+        image: profileImg
       }
     ]
   },
@@ -122,7 +137,8 @@ export const provinceDataList: ProvinceData[] = [
         role: "Giảng viên chính",
         description: "Chuỗi tập huấn 3 ngày về xây dựng không gian sáng chế (Makerspace) và quản lý thiết bị học tập thông minh.",
         organization: "Quỹ Phát triển Giáo dục STEM",
-        tags: ["Makerspace", "STEM", "IoT"]
+        tags: ["Makerspace", "STEM", "IoT"],
+        image: epuBuilding
       },
       {
         id: "dn-2",
@@ -133,7 +149,8 @@ export const provinceDataList: ProvinceData[] = [
         role: "Cố vấn Hướng dẫn",
         description: "Hỗ trợ học sinh hoàn thiện sản phẩm tay giả sinh học điều khiển bằng sóng cơ học và cảm biến chuyển động.",
         achievements: ["Giải Ba Cuộc thi KHKT Cấp Quốc Gia 2022"],
-        tags: ["Biomedical", "Sensors", "KHKT"]
+        tags: ["Biomedical", "Sensors", "KHKT"],
+        image: profileImg
       }
     ]
   },
@@ -151,7 +168,9 @@ export const provinceDataList: ProvinceData[] = [
         year: "2023 - 2024",
         role: "Nhà nghiên cứu / Triển khai",
         description: "Lắp đặt và chạy thử nghiệm hệ thống quản lý độ ẩm, ánh sáng và dinh dưỡng thủy canh tự động tại trang trại hoa Đà Lạt.",
-        tags: ["Smart Agriculture", "Hydroponics", "IoT"]
+        tags: ["Smart Agriculture", "Hydroponics", "IoT"],
+        image: epuBuilding,
+        proofLink: "https://github.com/mellivora24/SmartAgriculture"
       }
     ]
   },
@@ -169,7 +188,9 @@ export const provinceDataList: ProvinceData[] = [
         year: "2023",
         role: "Chuyên gia đào tạo",
         description: "Tập huấn cho đội ngũ giáo viên cốt cán về thiết kế giải pháp nhà thông minh FlexibleSmartHome tích hợp giao diện màn hình LVGL.",
-        tags: ["Robotics", "LVGL", "Smart Home"]
+        tags: ["Robotics", "LVGL", "Smart Home"],
+        image: epuBuilding,
+        proofLink: "https://github.com/mellivora24/FlexibleSmartHome"
       },
       {
         id: "hcm-2",
@@ -180,7 +201,9 @@ export const provinceDataList: ProvinceData[] = [
         role: "Cố vấn Chiến lược",
         description: "Hướng dẫn xây dựng ứng dụng so sánh kỹ năng JobFit và tích hợp mô hình Similarity AI vào sản phẩm cuộc thi.",
         achievements: ["Giải Nhất Cuộc thi Sáng tạo KH-CN 2024"],
-        tags: ["AI Model", "Web App", "KHKT"]
+        tags: ["AI Model", "Web App", "KHKT"],
+        image: bachelorGrad,
+        proofLink: "https://github.com/mellivora24/JobFIT"
       }
     ]
   },
@@ -198,7 +221,9 @@ export const provinceDataList: ProvinceData[] = [
         year: "2024",
         role: "Báo cáo viên chuyên đề",
         description: "Hướng dẫn kết nối cảm biến đo độ mặn, pH và giám sát ao nuôi thủy sản thông qua ứng dụng di động.",
-        tags: ["IoT Nông nghiệp", "Cảm biến", "ĐBSCL"]
+        tags: ["IoT Nông nghiệp", "Cảm biến", "ĐBSCL"],
+        image: profileImg,
+        proofLink: "https://github.com/mellivora24/AgriCommercePlatform"
       }
     ]
   }

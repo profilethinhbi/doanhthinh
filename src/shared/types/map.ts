@@ -11,12 +11,15 @@ export type MapActivity = {
   achievements?: string[];
   organization?: string;
   tags?: string[];
+  image?: string;
+  images?: string[];
+  proofLink?: string;
 };
 
 export type ProvinceData = {
   id: string;
   name: string;
   region: 'north' | 'central' | 'south';
-  coordinates: { x: number; y: number }; // percentage on 0-100 scale of map container
+  coordinates: { x: number; y: number };
   activities: MapActivity[];
 };
