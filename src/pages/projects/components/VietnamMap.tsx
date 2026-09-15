@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useCallback } from "react";
+import React, { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import type { ActivityCategory, ProvinceData, MapActivity } from "@type/map";
 import { provinceDataList } from "@shared/constants/mapData";
 import { vietnamProvincePaths } from "@shared/constants/vietnamPaths";
@@ -13,22 +13,39 @@ type FilteredProvince = ProvinceData & {
   filteredActivities: MapActivity[];
 };
 
+// SVG base coordinate space (500 width x 750 height)
+const BASE_WIDTH = 500;
+const BASE_HEIGHT = 750;
+
 export const VietnamMap: React.FC<VietnamMapProps> = ({
   selectedCategory,
   onSelectProvince,
 }) => {
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null);
 
-  // Zoom & Pan states
-  const [zoom, setZoom] = useState<number>(1);
-  const [pan, setPan] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  // ViewBox State for GIS-like zooming & panning inside fixed frame
+  const [viewBox, setViewBox] = useState<{ x: number; y: number; w: number; h: number }>({
+    x: 0,
+    y: 0,
+    w: BASE_WIDTH,
+    h: BASE_HEIGHT,
+  });
+
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   // Drag tracking refs
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const panStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const viewBoxStartRef = useRef<{ x: number; y: number; w: number; h: number }>({
+    x: 0,
+    y: 0,
+    w: BASE_WIDTH,
+    h: BASE_HEIGHT,
+  });
   const hasDraggedRef = useRef<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Calculate current zoom factor (1.0 to 4.0)
+  const currentZoom = BASE_WIDTH / viewBox.w;
 
   // Helper to normalize province name for matching
   const normalizeName = (name: string) => {
@@ -71,63 +88,131 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     };
   }, [hoveredProvinceId, activeProvinceMap]);
 
-  // Zoom Control Handlers
+  // Helper: Zoom focused around a center point (in SVG coordinates)
+  const zoomToPoint = useCallback(
+    (targetZoom: number, focusX: number, focusY: number) => {
+      const clampedZoom = Math.min(Math.max(targetZoom, 1), 4);
+      const newW = BASE_WIDTH / clampedZoom;
+      const newH = BASE_HEIGHT / clampedZoom;
+
+      if (clampedZoom === 1) {
+        setViewBox({ x: 0, y: 0, w: BASE_WIDTH, h: BASE_HEIGHT });
+        return;
+      }
+
+      setViewBox((prev) => {
+        const ratioX = (focusX - prev.x) / prev.w;
+        const ratioY = (focusY - prev.y) / prev.h;
+
+        let newX = focusX - ratioX * newW;
+        let newY = focusY - ratioY * newH;
+
+        // Clamp viewBox so map stays within bounds
+        const maxX = BASE_WIDTH - newW;
+        const maxY = BASE_HEIGHT - newH;
+        newX = Math.min(Math.max(newX, -20), maxX + 20);
+        newY = Math.min(Math.max(newY, -20), maxY + 20);
+
+        return { x: newX, y: newY, w: newW, h: newH };
+      });
+    },
+    []
+  );
+
+  // Zoom Button Handlers
   const handleZoomIn = () => {
-    setZoom((prev) => Math.min(prev + 0.35, 3.5));
+    const centerSVGX = viewBox.x + viewBox.w / 2;
+    const centerSVGY = viewBox.y + viewBox.h / 2;
+    zoomToPoint(currentZoom + 0.4, centerSVGX, centerSVGY);
   };
 
   const handleZoomOut = () => {
-    setZoom((prev) => {
-      const nextZoom = Math.max(prev - 0.35, 1);
-      if (nextZoom === 1) setPan({ x: 0, y: 0 });
-      return nextZoom;
-    });
+    const centerSVGX = viewBox.x + viewBox.w / 2;
+    const centerSVGY = viewBox.y + viewBox.h / 2;
+    zoomToPoint(currentZoom - 0.4, centerSVGX, centerSVGY);
   };
 
   const handleResetZoom = () => {
-    setZoom(1);
-    setPan({ x: 0, y: 0 });
+    setViewBox({ x: 0, y: 0, w: BASE_WIDTH, h: BASE_HEIGHT });
   };
 
-  // Wheel zoom handler
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const delta = e.deltaY < 0 ? 0.2 : -0.2;
-    setZoom((prevZoom) => {
-      const newZoom = Math.min(Math.max(prevZoom + delta, 1), 3.5);
-      if (newZoom === 1) setPan({ x: 0, y: 0 });
-      return newZoom;
-    });
-  };
+  // Native non-passive Wheel handler for Google Maps style zoom centered under cursor
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  // Drag handlers
+    const handleWheelNative = (e: WheelEvent) => {
+      // Prevent browser page from scrolling when zooming map
+      e.preventDefault();
+
+      const rect = container.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      setViewBox((prev) => {
+        const svgMouseX = prev.x + (mouseX / rect.width) * prev.w;
+        const svgMouseY = prev.y + (mouseY / rect.height) * prev.h;
+
+        const zoomDelta = e.deltaY < 0 ? 0.25 : -0.25;
+        const newZoom = Math.min(Math.max(BASE_WIDTH / prev.w + zoomDelta, 1), 4);
+
+        if (newZoom === 1) {
+          return { x: 0, y: 0, w: BASE_WIDTH, h: BASE_HEIGHT };
+        }
+
+        const newW = BASE_WIDTH / newZoom;
+        const newH = BASE_HEIGHT / newZoom;
+
+        const ratioX = (svgMouseX - prev.x) / prev.w;
+        const ratioY = (svgMouseY - prev.y) / prev.h;
+
+        let newX = svgMouseX - ratioX * newW;
+        let newY = svgMouseY - ratioY * newH;
+
+        const maxX = BASE_WIDTH - newW;
+        const maxY = BASE_HEIGHT - newH;
+        newX = Math.min(Math.max(newX, -30), maxX + 30);
+        newY = Math.min(Math.max(newY, -30), maxY + 30);
+
+        return { x: newX, y: newY, w: newW, h: newH };
+      });
+    };
+
+    container.addEventListener("wheel", handleWheelNative, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", handleWheelNative);
+    };
+  }, []);
+
+  // Mouse Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
-    // Only drag with left mouse button
     if (e.button !== 0) return;
     setIsDragging(true);
     hasDraggedRef.current = false;
     dragStartRef.current = { x: e.clientX, y: e.clientY };
-    panStartRef.current = { ...pan };
+    viewBoxStartRef.current = { ...viewBox };
   };
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!isDragging) return;
+      if (!isDragging || !containerRef.current) return;
 
-      const dx = e.clientX - dragStartRef.current.x;
-      const dy = e.clientY - dragStartRef.current.y;
+      const dxPixels = e.clientX - dragStartRef.current.x;
+      const dyPixels = e.clientY - dragStartRef.current.y;
 
-      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      if (Math.abs(dxPixels) > 3 || Math.abs(dyPixels) > 3) {
         hasDraggedRef.current = true;
       }
 
-      // Convert pixel movement to SVG coordinate system space (~500x750)
-      const containerWidth = containerRef.current?.clientWidth || 500;
-      const scaleFactor = 500 / containerWidth;
+      const rect = containerRef.current.getBoundingClientRect();
+      const dxSVG = (dxPixels / rect.width) * viewBoxStartRef.current.w;
+      const dySVG = (dyPixels / rect.height) * viewBoxStartRef.current.h;
 
-      setPan({
-        x: panStartRef.current.x + dx * scaleFactor,
-        y: panStartRef.current.y + dy * scaleFactor,
+      setViewBox({
+        x: viewBoxStartRef.current.x - dxSVG,
+        y: viewBoxStartRef.current.y - dySVG,
+        w: viewBoxStartRef.current.w,
+        h: viewBoxStartRef.current.h,
       });
     },
     [isDragging]
@@ -137,31 +222,34 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     setIsDragging(false);
   };
 
-  // Touch handlers for mobile pan/zoom
+  // Touch Drag Handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
       setIsDragging(true);
       hasDraggedRef.current = false;
       dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      panStartRef.current = { ...pan };
+      viewBoxStartRef.current = { ...viewBox };
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || e.touches.length !== 1) return;
-    const dx = e.touches[0].clientX - dragStartRef.current.x;
-    const dy = e.touches[0].clientY - dragStartRef.current.y;
+    if (!isDragging || e.touches.length !== 1 || !containerRef.current) return;
+    const dxPixels = e.touches[0].clientX - dragStartRef.current.x;
+    const dyPixels = e.touches[0].clientY - dragStartRef.current.y;
 
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+    if (Math.abs(dxPixels) > 3 || Math.abs(dyPixels) > 3) {
       hasDraggedRef.current = true;
     }
 
-    const containerWidth = containerRef.current?.clientWidth || 500;
-    const scaleFactor = 500 / containerWidth;
+    const rect = containerRef.current.getBoundingClientRect();
+    const dxSVG = (dxPixels / rect.width) * viewBoxStartRef.current.w;
+    const dySVG = (dyPixels / rect.height) * viewBoxStartRef.current.h;
 
-    setPan({
-      x: panStartRef.current.x + dx * scaleFactor,
-      y: panStartRef.current.y + dy * scaleFactor,
+    setViewBox({
+      x: viewBoxStartRef.current.x - dxSVG,
+      y: viewBoxStartRef.current.y - dySVG,
+      w: viewBoxStartRef.current.w,
+      h: viewBoxStartRef.current.h,
     });
   };
 
@@ -169,16 +257,19 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     setIsDragging(false);
   };
 
-  // Compute Tooltip screen position considering zoom & pan
+  // Compute Tooltip screen percentage position relative to current viewBox
   const tooltipPos = useMemo(() => {
     if (!hoveredProvinceObj) return null;
     const { x, y } = hoveredProvinceObj.pathObj.center;
-    // Map view box is 0 0 500 750, transformed around center (250, 375)
-    const leftPercent = (((x - 250) * zoom + 250 + pan.x) / 500) * 100;
-    const topPercent = (((y - 375) * zoom + 375 + pan.y) / 750) * 100;
+
+    const leftPercent = ((x - viewBox.x) / viewBox.w) * 100;
+    const topPercent = ((y - viewBox.y) / viewBox.h) * 100;
 
     return { left: leftPercent, top: topPercent };
-  }, [hoveredProvinceObj, zoom, pan]);
+  }, [hoveredProvinceObj, viewBox]);
+
+  // Marker & Label scale compensation factor (keeps pins sharp & readable when map expands)
+  const pinScale = Math.max(0.65, 1 / Math.sqrt(currentZoom));
 
   return (
     <div className="vietnam-map-container">
@@ -198,11 +289,10 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         </div>
       </div>
 
-      {/* SVG Map Canvas Wrapper */}
+      {/* SVG Map Canvas Viewport Frame */}
       <div
         ref={containerRef}
         className={`map-svg-wrapper ${isDragging ? "dragging" : ""}`}
-        onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -211,33 +301,33 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Floating Zoom Controls */}
+        {/* Floating GIS Zoom Controls */}
         <div className="map-zoom-controls">
           <button
             type="button"
             className="zoom-btn"
             onClick={handleZoomIn}
-            title="Phóng to (Zoom In)"
+            title="Phóng to"
             aria-label="Phóng to"
           >
             +
           </button>
-          <span className="zoom-level-badge">{Math.round(zoom * 100)}%</span>
+          <span className="zoom-level-badge">{Math.round(currentZoom * 100)}%</span>
           <button
             type="button"
             className="zoom-btn"
             onClick={handleZoomOut}
-            title="Thu nhỏ (Zoom Out)"
+            title="Thu nhỏ"
             aria-label="Thu nhỏ"
           >
             −
           </button>
-          {zoom !== 1 || pan.x !== 0 || pan.y !== 0 ? (
+          {currentZoom > 1.05 || viewBox.x !== 0 || viewBox.y !== 0 ? (
             <button
               type="button"
               className="zoom-btn reset-btn"
               onClick={handleResetZoom}
-              title="Đặt lại bản đồ (Reset)"
+              title="Mặc định"
               aria-label="Đặt lại bản đồ"
             >
               ⟲ Reset
@@ -245,13 +335,14 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
           ) : null}
         </div>
 
-        {/* Map Interaction Hint */}
+        {/* Floating Zoom Hint */}
         <div className="map-zoom-hint">
-          <span>💡 Cuộn chuột hoặc kéo rê để phóng to & di chuyển</span>
+          <span>🗺️ Cuộn chuột để soi chi tiết từng vùng • Kéo rê để di chuyển</span>
         </div>
 
+        {/* Pure GIS SVG Map Vector ViewBox */}
         <svg
-          viewBox="0 0 500 750"
+          viewBox={`${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`}
           className="vietnam-map-svg"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -272,228 +363,218 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
             </filter>
           </defs>
 
-          {/* Zoomable & Pannable Container Group */}
+          {/* Decorative Grid Lines */}
           <g
-            className="map-zoom-group"
-            transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`}
-            style={{
-              transformOrigin: "250px 375px",
-              transition: isDragging ? "none" : "transform 0.15s ease-out",
-            }}
+            className="map-grid-lines"
+            stroke="rgba(200, 155, 75, 0.08)"
+            strokeWidth={0.5 / currentZoom}
+            strokeDasharray="3 3"
           >
-            {/* Decorative Grid Lines */}
-            <g
-              className="map-grid-lines"
-              stroke="rgba(200, 155, 75, 0.08)"
-              strokeWidth="0.5"
-              strokeDasharray="3 3"
-            >
-              <line x1="50" y1="0" x2="50" y2="750" />
-              <line x1="150" y1="0" x2="150" y2="750" />
-              <line x1="250" y1="0" x2="250" y2="750" />
-              <line x1="350" y1="0" x2="350" y2="750" />
-              <line x1="450" y1="0" x2="450" y2="750" />
+            <line x1="50" y1="0" x2="50" y2="750" />
+            <line x1="150" y1="0" x2="150" y2="750" />
+            <line x1="250" y1="0" x2="250" y2="750" />
+            <line x1="350" y1="0" x2="350" y2="750" />
+            <line x1="450" y1="0" x2="450" y2="750" />
 
-              <line x1="0" y1="150" x2="500" y2="150" />
-              <line x1="0" y1="300" x2="500" y2="300" />
-              <line x1="0" y1="450" x2="500" y2="450" />
-              <line x1="0" y1="600" x2="500" y2="600" />
-            </g>
+            <line x1="0" y1="150" x2="500" y2="150" />
+            <line x1="0" y1="300" x2="500" y2="300" />
+            <line x1="0" y1="450" x2="500" y2="450" />
+            <line x1="0" y1="600" x2="500" y2="600" />
+          </g>
 
-            {/* Render 63 Authentic Vietnam Province Vector Paths */}
-            <g className="map-provinces-layer">
-              {vietnamProvincePaths.map((prov) => {
-                const norm = normalizeName(prov.name);
-                const activeData = activeProvinceMap.get(norm);
-                const isActive = Boolean(activeData);
-                const isHovered = hoveredProvinceId === prov.id;
+          {/* Render 63 Authentic Vietnam Province Vector Paths */}
+          <g className="map-provinces-layer">
+            {vietnamProvincePaths.map((prov) => {
+              const norm = normalizeName(prov.name);
+              const activeData = activeProvinceMap.get(norm);
+              const isActive = Boolean(activeData);
+              const isHovered = hoveredProvinceId === prov.id;
 
-                return (
-                  <path
-                    key={prov.id}
-                    d={prov.path}
-                    className={`province-path ${isActive ? "has-activity" : ""} ${
-                      isHovered ? "hovered" : ""
-                    }`}
-                    fill={
-                      isActive
-                        ? "url(#activeProvinceGradient)"
-                        : "url(#provinceGradient)"
+              return (
+                <path
+                  key={prov.id}
+                  d={prov.path}
+                  className={`province-path ${isActive ? "has-activity" : ""} ${
+                    isHovered ? "hovered" : ""
+                  }`}
+                  fill={
+                    isActive
+                      ? "url(#activeProvinceGradient)"
+                      : "url(#provinceGradient)"
+                  }
+                  stroke={
+                    isHovered
+                      ? "#c89b4b"
+                      : isActive
+                      ? "rgba(74, 158, 142, 0.7)"
+                      : "rgba(255, 255, 255, 0.12)"
+                  }
+                  strokeWidth={(isHovered ? 1.8 : isActive ? 1.2 : 0.5) / Math.sqrt(currentZoom)}
+                  onMouseEnter={() => setHoveredProvinceId(prov.id)}
+                  onMouseLeave={() => setHoveredProvinceId(null)}
+                  onClick={() => {
+                    if (!hasDraggedRef.current && activeData) {
+                      onSelectProvince(activeData);
                     }
-                    stroke={
-                      isHovered
-                        ? "#c89b4b"
-                        : isActive
-                        ? "rgba(74, 158, 142, 0.7)"
-                        : "rgba(255, 255, 255, 0.12)"
+                  }}
+                  style={{ cursor: isActive ? "pointer" : "grab" }}
+                />
+              );
+            })}
+          </g>
+
+          {/* Islands Layer: Hoàng Sa & Trường Sa */}
+          <g className="map-islands-layer">
+            {/* Quần đảo Hoàng Sa (Paracel Islands) */}
+            <g className="island-group hoang-sa" transform="translate(360, 335)">
+              <circle
+                cx="0"
+                cy="0"
+                r={4.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <circle
+                cx="12"
+                cy="-6"
+                r={3.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <circle
+                cx="8"
+                cy="10"
+                r={3.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <text
+                x="0"
+                y="24"
+                textAnchor="middle"
+                className="island-text"
+                fill="#c89b4b"
+                fontSize={11 * pinScale}
+                fontWeight="700"
+              >
+                QĐ. Hoàng Sa (Việt Nam)
+              </text>
+            </g>
+
+            {/* Quần đảo Trường Sa (Spratly Islands) */}
+            <g className="island-group truong-sa" transform="translate(360, 570)">
+              <circle
+                cx="0"
+                cy="0"
+                r={4.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <circle
+                cx="18"
+                cy="12"
+                r={3.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <circle
+                cx="-12"
+                cy="24"
+                r={3.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <circle
+                cx="22"
+                cy="32"
+                r={4.5 * pinScale}
+                fill="rgba(200, 155, 75, 0.85)"
+                stroke="#c89b4b"
+                strokeWidth={1.2 * pinScale}
+              />
+              <text
+                x="5"
+                y="48"
+                textAnchor="middle"
+                className="island-text"
+                fill="#c89b4b"
+                fontSize={11 * pinScale}
+                fontWeight="700"
+              >
+                QĐ. Trường Sa (Việt Nam)
+              </text>
+            </g>
+          </g>
+
+          {/* Active Activity Pin Markers Layer */}
+          <g className="map-pins-layer">
+            {vietnamProvincePaths.map((prov) => {
+              const norm = normalizeName(prov.name);
+              const activeData = activeProvinceMap.get(norm);
+              if (!activeData) return null;
+
+              const posX = prov.center.x;
+              const posY = prov.center.y;
+              const isHovered = hoveredProvinceId === prov.id;
+              const topCategory =
+                activeData.filteredActivities[0]?.category || "teacher-training";
+
+              return (
+                <g
+                  key={`pin-${prov.id}`}
+                  className={`map-marker-group ${topCategory} ${
+                    isHovered ? "active" : ""
+                  }`}
+                  transform={`translate(${posX}, ${posY}) scale(${pinScale})`}
+                  onClick={() => {
+                    if (!hasDraggedRef.current) {
+                      onSelectProvince(activeData);
                     }
-                    strokeWidth={isHovered ? 1.8 : isActive ? 1.2 : 0.5}
-                    onMouseEnter={() => setHoveredProvinceId(prov.id)}
-                    onMouseLeave={() => setHoveredProvinceId(null)}
-                    onClick={() => {
-                      if (!hasDraggedRef.current && activeData) {
-                        onSelectProvince(activeData);
-                      }
-                    }}
-                    style={{ cursor: isActive ? "pointer" : "grab" }}
-                  />
-                );
-              })}
-            </g>
-
-            {/* Islands Layer: Hoàng Sa & Trường Sa */}
-            <g className="map-islands-layer">
-              {/* Quần đảo Hoàng Sa (Paracel Islands) */}
-              <g className="island-group hoang-sa" transform="translate(360, 335)">
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="4.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <circle
-                  cx="12"
-                  cy="-6"
-                  r="3.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <circle
-                  cx="8"
-                  cy="10"
-                  r="3.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <text
-                  x="0"
-                  y="24"
-                  textAnchor="middle"
-                  className="island-text"
-                  fill="#c89b4b"
-                  fontSize="11"
-                  fontWeight="700"
+                  }}
+                  onMouseEnter={() => setHoveredProvinceId(prov.id)}
+                  onMouseLeave={() => setHoveredProvinceId(null)}
+                  style={{ cursor: "pointer" }}
                 >
-                  QĐ. Hoàng Sa (Việt Nam)
-                </text>
-              </g>
+                  {/* Pulsing Outer Rings */}
+                  <circle className="pulse-ring" r="14" />
+                  <circle className="pulse-ring-outer" r="22" />
 
-              {/* Quần đảo Trường Sa (Spratly Islands) */}
-              <g className="island-group truong-sa" transform="translate(360, 570)">
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="4.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <circle
-                  cx="18"
-                  cy="12"
-                  r="3.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <circle
-                  cx="-12"
-                  cy="24"
-                  r="3.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <circle
-                  cx="22"
-                  cy="32"
-                  r="4.5"
-                  fill="rgba(200, 155, 75, 0.85)"
-                  stroke="#c89b4b"
-                  strokeWidth="1.2"
-                />
-                <text
-                  x="5"
-                  y="48"
-                  textAnchor="middle"
-                  className="island-text"
-                  fill="#c89b4b"
-                  fontSize="11"
-                  fontWeight="700"
-                >
-                  QĐ. Trường Sa (Việt Nam)
-                </text>
-              </g>
-            </g>
+                  {/* Center Pin Marker */}
+                  <circle className="pin-core" r="8" filter="url(#glow)" />
 
-            {/* Active Activity Pin Markers Layer */}
-            <g className="map-pins-layer">
-              {vietnamProvincePaths.map((prov) => {
-                const norm = normalizeName(prov.name);
-                const activeData = activeProvinceMap.get(norm);
-                if (!activeData) return null;
-
-                const posX = prov.center.x;
-                const posY = prov.center.y;
-                const isHovered = hoveredProvinceId === prov.id;
-                const topCategory =
-                  activeData.filteredActivities[0]?.category || "teacher-training";
-
-                return (
-                  <g
-                    key={`pin-${prov.id}`}
-                    className={`map-marker-group ${topCategory} ${
-                      isHovered ? "active" : ""
-                    }`}
-                    transform={`translate(${posX}, ${posY})`}
-                    onClick={() => {
-                      if (!hasDraggedRef.current) {
-                        onSelectProvince(activeData);
-                      }
-                    }}
-                    onMouseEnter={() => setHoveredProvinceId(prov.id)}
-                    onMouseLeave={() => setHoveredProvinceId(null)}
-                    style={{ cursor: "pointer" }}
+                  {/* Badge Count Indicator */}
+                  <circle className="pin-badge-bg" cx="9" cy="-9" r="8.5" fill="#c89b4b" />
+                  <text
+                    x="9"
+                    y="-6"
+                    textAnchor="middle"
+                    fill="#001410"
+                    fontSize="11"
+                    fontWeight="bold"
                   >
-                    {/* Pulsing Outer Rings */}
-                    <circle className="pulse-ring" r="14" />
-                    <circle className="pulse-ring-outer" r="22" />
+                    {activeData.matchingCount}
+                  </text>
 
-                    {/* Center Pin Marker */}
-                    <circle className="pin-core" r="8" filter="url(#glow)" />
-
-                    {/* Badge Count Indicator */}
-                    <circle className="pin-badge-bg" cx="9" cy="-9" r="8.5" fill="#c89b4b" />
-                    <text
-                      x="9"
-                      y="-6"
-                      textAnchor="middle"
-                      fill="#001410"
-                      fontSize="11"
-                      fontWeight="bold"
-                    >
-                      {activeData.matchingCount}
-                    </text>
-
-                    {/* Province Name Label */}
-                    <text
-                      x="15"
-                      y="4"
-                      className="province-label"
-                      fill="#ffffff"
-                      fontSize="12"
-                      fontWeight="600"
-                    >
-                      {prov.name}
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
+                  {/* Province Name Label */}
+                  <text
+                    x="15"
+                    y="4"
+                    className="province-label"
+                    fill="#ffffff"
+                    fontSize="12"
+                    fontWeight="600"
+                  >
+                    {prov.name}
+                  </text>
+                </g>
+              );
+            })}
           </g>
         </svg>
 

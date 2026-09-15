@@ -264,7 +264,11 @@
   position: relative;
   width: 100%;
   max-width: 950px;
+  height: 680px;
+  max-height: 75vh;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 18px;
   cursor: grab;
   user-select: none;
   touch-action: none;
