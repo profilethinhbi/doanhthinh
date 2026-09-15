@@ -16,14 +16,16 @@ type FilteredProvince = ProvinceData & {
 // SVG base coordinate space (500 width x 750 height)
 const BASE_WIDTH = 500;
 const BASE_HEIGHT = 750;
+const MAX_ZOOM = 10; // Allow deep zoom up to 1000%
 
 export const VietnamMap: React.FC<VietnamMapProps> = ({
   selectedCategory,
   onSelectProvince,
 }) => {
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
-  // ViewBox State for GIS-like zooming & panning inside fixed frame
+  // ViewBox State for GIS-like deep zooming & panning
   const [viewBox, setViewBox] = useState<{ x: number; y: number; w: number; h: number }>({
     x: 0,
     y: 0,
@@ -41,10 +43,11 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     w: BASE_WIDTH,
     h: BASE_HEIGHT,
   });
+  const touchDistRef = useRef<number | null>(null);
   const hasDraggedRef = useRef<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Calculate current zoom factor (1.0 to 4.0)
+  // Calculate current zoom factor (1.0 to 10.0)
   const currentZoom = BASE_WIDTH / viewBox.w;
 
   // Helper to normalize province name for matching
@@ -91,7 +94,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
   // Helper: Zoom focused around a center point (in SVG coordinates)
   const zoomToPoint = useCallback(
     (targetZoom: number, focusX: number, focusY: number) => {
-      const clampedZoom = Math.min(Math.max(targetZoom, 1), 4);
+      const clampedZoom = Math.min(Math.max(targetZoom, 1), MAX_ZOOM);
       const newW = BASE_WIDTH / clampedZoom;
       const newH = BASE_HEIGHT / clampedZoom;
 
@@ -107,11 +110,11 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         let newX = focusX - ratioX * newW;
         let newY = focusY - ratioY * newH;
 
-        // Clamp viewBox so map stays within bounds
+        // Clamp viewBox so map stays inside boundaries with margin
         const maxX = BASE_WIDTH - newW;
         const maxY = BASE_HEIGHT - newH;
-        newX = Math.min(Math.max(newX, -20), maxX + 20);
-        newY = Math.min(Math.max(newY, -20), maxY + 20);
+        newX = Math.min(Math.max(newX, -30), maxX + 30);
+        newY = Math.min(Math.max(newY, -30), maxY + 30);
 
         return { x: newX, y: newY, w: newW, h: newH };
       });
@@ -123,17 +126,34 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
   const handleZoomIn = () => {
     const centerSVGX = viewBox.x + viewBox.w / 2;
     const centerSVGY = viewBox.y + viewBox.h / 2;
-    zoomToPoint(currentZoom + 0.4, centerSVGX, centerSVGY);
+    zoomToPoint(currentZoom * 1.5, centerSVGX, centerSVGY);
   };
 
   const handleZoomOut = () => {
     const centerSVGX = viewBox.x + viewBox.w / 2;
     const centerSVGY = viewBox.y + viewBox.h / 2;
-    zoomToPoint(currentZoom - 0.4, centerSVGX, centerSVGY);
+    zoomToPoint(currentZoom / 1.5, centerSVGX, centerSVGY);
   };
 
   const handleResetZoom = () => {
     setViewBox({ x: 0, y: 0, w: BASE_WIDTH, h: BASE_HEIGHT });
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev);
+  };
+
+  // Double click handler to zoom in directly at clicked location
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const svgX = viewBox.x + (mouseX / rect.width) * viewBox.w;
+    const svgY = viewBox.y + (mouseY / rect.height) * viewBox.h;
+
+    zoomToPoint(currentZoom * 1.8, svgX, svgY);
   };
 
   // Native non-passive Wheel handler for Google Maps style zoom centered under cursor
@@ -142,7 +162,6 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     if (!container) return;
 
     const handleWheelNative = (e: WheelEvent) => {
-      // Prevent browser page from scrolling when zooming map
       e.preventDefault();
 
       const rect = container.getBoundingClientRect();
@@ -153,8 +172,8 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         const svgMouseX = prev.x + (mouseX / rect.width) * prev.w;
         const svgMouseY = prev.y + (mouseY / rect.height) * prev.h;
 
-        const zoomDelta = e.deltaY < 0 ? 0.25 : -0.25;
-        const newZoom = Math.min(Math.max(BASE_WIDTH / prev.w + zoomDelta, 1), 4);
+        const scaleMultiplier = e.deltaY < 0 ? 1.25 : 0.8;
+        const newZoom = Math.min(Math.max((BASE_WIDTH / prev.w) * scaleMultiplier, 1), MAX_ZOOM);
 
         if (newZoom === 1) {
           return { x: 0, y: 0, w: BASE_WIDTH, h: BASE_HEIGHT };
@@ -171,8 +190,8 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 
         const maxX = BASE_WIDTH - newW;
         const maxY = BASE_HEIGHT - newH;
-        newX = Math.min(Math.max(newX, -30), maxX + 30);
-        newY = Math.min(Math.max(newY, -30), maxY + 30);
+        newX = Math.min(Math.max(newX, -40), maxX + 40);
+        newY = Math.min(Math.max(newY, -40), maxY + 40);
 
         return { x: newX, y: newY, w: newW, h: newH };
       });
@@ -183,6 +202,17 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
       container.removeEventListener("wheel", handleWheelNative);
     };
   }, []);
+
+  // Keyboard accessibility for ESC fullscreen exit
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isFullscreen]);
 
   // Mouse Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -222,39 +252,77 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     setIsDragging(false);
   };
 
-  // Touch Drag Handlers
+  // Multi-Touch Handlers (Touch Pan + Pinch Zoom)
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
       setIsDragging(true);
       hasDraggedRef.current = false;
       dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       viewBoxStartRef.current = { ...viewBox };
+    } else if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      touchDistRef.current = dist;
+      viewBoxStartRef.current = { ...viewBox };
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || e.touches.length !== 1 || !containerRef.current) return;
-    const dxPixels = e.touches[0].clientX - dragStartRef.current.x;
-    const dyPixels = e.touches[0].clientY - dragStartRef.current.y;
+    if (!containerRef.current) return;
 
-    if (Math.abs(dxPixels) > 3 || Math.abs(dyPixels) > 3) {
-      hasDraggedRef.current = true;
+    if (e.touches.length === 1 && isDragging) {
+      const dxPixels = e.touches[0].clientX - dragStartRef.current.x;
+      const dyPixels = e.touches[0].clientY - dragStartRef.current.y;
+
+      if (Math.abs(dxPixels) > 3 || Math.abs(dyPixels) > 3) {
+        hasDraggedRef.current = true;
+      }
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const dxSVG = (dxPixels / rect.width) * viewBoxStartRef.current.w;
+      const dySVG = (dyPixels / rect.height) * viewBoxStartRef.current.h;
+
+      setViewBox({
+        x: viewBoxStartRef.current.x - dxSVG,
+        y: viewBoxStartRef.current.y - dySVG,
+        w: viewBoxStartRef.current.w,
+        h: viewBoxStartRef.current.h,
+      });
+    } else if (e.touches.length === 2 && touchDistRef.current) {
+      // Pinch to Zoom logic
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+
+      const ratio = touchDistRef.current / dist;
+      const rect = containerRef.current.getBoundingClientRect();
+      const midTouchX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+      const midTouchY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+
+      const focusSVGX = viewBoxStartRef.current.x + (midTouchX / rect.width) * viewBoxStartRef.current.w;
+      const focusSVGY = viewBoxStartRef.current.y + (midTouchY / rect.height) * viewBoxStartRef.current.h;
+
+      const newW = Math.min(Math.max(viewBoxStartRef.current.w * ratio, BASE_WIDTH / MAX_ZOOM), BASE_WIDTH);
+      const newH = (newW / BASE_WIDTH) * BASE_HEIGHT;
+
+      const ratioX = (focusSVGX - viewBoxStartRef.current.x) / viewBoxStartRef.current.w;
+      const ratioY = (focusSVGY - viewBoxStartRef.current.y) / viewBoxStartRef.current.h;
+
+      setViewBox({
+        x: focusSVGX - ratioX * newW,
+        y: focusSVGY - ratioY * newH,
+        w: newW,
+        h: newH,
+      });
     }
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const dxSVG = (dxPixels / rect.width) * viewBoxStartRef.current.w;
-    const dySVG = (dyPixels / rect.height) * viewBoxStartRef.current.h;
-
-    setViewBox({
-      x: viewBoxStartRef.current.x - dxSVG,
-      y: viewBoxStartRef.current.y - dySVG,
-      w: viewBoxStartRef.current.w,
-      h: viewBoxStartRef.current.h,
-    });
   };
 
   const handleTouchEnd = () => {
     setIsDragging(false);
+    touchDistRef.current = null;
   };
 
   // Compute Tooltip screen percentage position relative to current viewBox
@@ -268,11 +336,11 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
     return { left: leftPercent, top: topPercent };
   }, [hoveredProvinceObj, viewBox]);
 
-  // Marker & Label scale compensation factor (keeps pins sharp & readable when map expands)
-  const pinScale = Math.max(0.65, 1 / Math.sqrt(currentZoom));
+  // Dynamic pin scaling: pins stay sharp, crisp & readable at high zoom levels
+  const pinScale = Math.max(0.35, 1 / Math.pow(currentZoom, 0.65));
 
   return (
-    <div className="vietnam-map-container">
+    <div className={`vietnam-map-container ${isFullscreen ? "fullscreen" : ""}`}>
       {/* Map Header / Legend */}
       <div className="map-legend">
         <div className="legend-item">
@@ -297,6 +365,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onDoubleClick={handleDoubleClick}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -327,17 +396,30 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
               type="button"
               className="zoom-btn reset-btn"
               onClick={handleResetZoom}
-              title="Mặc định"
+              title="Đặt lại bản đồ"
               aria-label="Đặt lại bản đồ"
             >
               ⟲ Reset
             </button>
           ) : null}
+          <button
+            type="button"
+            className="zoom-btn fullscreen-btn"
+            onClick={toggleFullscreen}
+            title={isFullscreen ? "Thoát toàn màn hình (ESC)" : "Xem toàn màn hình"}
+            aria-label="Xem toàn màn hình"
+          >
+            {isFullscreen ? "✕" : "⛶"}
+          </button>
         </div>
 
         {/* Floating Zoom Hint */}
         <div className="map-zoom-hint">
-          <span>🗺️ Cuộn chuột để soi chi tiết từng vùng • Kéo rê để di chuyển</span>
+          <span>
+            {currentZoom > 2.5
+              ? "🔎 Đang soi chi tiết địa bàn • Cuộn / nhấp đúp để phóng to sâu tới 1000%"
+              : "🗺️ Cuộn chuột / nhấp đúp để soi sâu từng tỉnh thành • Kéo rê để di chuyển"}
+          </span>
         </div>
 
         {/* Pure GIS SVG Map Vector ViewBox */}
@@ -381,6 +463,30 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
             <line x1="0" y1="450" x2="500" y2="450" />
             <line x1="0" y1="600" x2="500" y2="600" />
           </g>
+
+          {/* Geographical Regions & Sea Labels (Revealed on Zoom > 1.4) */}
+          {currentZoom >= 1.4 && (
+            <g className="map-geo-labels-layer" pointerEvents="none">
+              <text x="390" y="190" fill="rgba(74, 158, 142, 0.45)" fontSize={11 * pinScale} fontStyle="italic" fontWeight="600">
+                Vịnh Bắc Bộ
+              </text>
+              <text x="420" y="440" fill="rgba(74, 158, 142, 0.45)" fontSize={12 * pinScale} fontStyle="italic" fontWeight="700" letterSpacing="1.5">
+                BIỂN ĐÔNG
+              </text>
+              <text x="210" y="145" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+                Đồng bằng Sông Hồng
+              </text>
+              <text x="260" y="370" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+                Duyên hải Miền Trung
+              </text>
+              <text x="270" y="510" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+                Tây Nguyên
+              </text>
+              <text x="160" y="665" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+                Đồng bằng Sông Cửu Long
+              </text>
+            </g>
+          )}
 
           {/* Render 63 Authentic Vietnam Province Vector Paths */}
           <g className="map-provinces-layer">
@@ -524,6 +630,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
               const isHovered = hoveredProvinceId === prov.id;
               const topCategory =
                 activeData.filteredActivities[0]?.category || "teacher-training";
+              const venueName = activeData.filteredActivities[0]?.location || "";
 
               return (
                 <g
@@ -572,6 +679,20 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   >
                     {prov.name}
                   </text>
+
+                  {/* Detailed Venue / Institution Label Revealed at Deep Zoom (> 2.4x) */}
+                  {currentZoom >= 2.4 && venueName && (
+                    <text
+                      x="15"
+                      y="16"
+                      className="venue-label"
+                      fill="#c89b4b"
+                      fontSize="9.5"
+                      fontWeight="500"
+                    >
+                      📍 {venueName}
+                    </text>
+                  )}
                 </g>
               );
             })}
