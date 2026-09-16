@@ -24,6 +24,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 }) => {
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [mapTheme, setMapTheme] = useState<"dark" | "light">("dark");
 
   // ViewBox State for GIS-like deep zooming & panning
   const [viewBox, setViewBox] = useState<{ x: number; y: number; w: number; h: number }>({
@@ -141,6 +142,10 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 
   const toggleFullscreen = () => {
     setIsFullscreen((prev) => !prev);
+  };
+
+  const toggleMapTheme = () => {
+    setMapTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   // Double click handler to zoom in directly at clicked location
@@ -339,8 +344,10 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
   // Dynamic pin scaling: pins stay sharp, crisp & readable at high zoom levels
   const pinScale = Math.max(0.35, 1 / Math.pow(currentZoom, 0.65));
 
+  const isLight = mapTheme === "light";
+
   return (
-    <div className={`vietnam-map-container ${isFullscreen ? "fullscreen" : ""}`}>
+    <div className={`vietnam-map-container ${mapTheme}-theme ${isFullscreen ? "fullscreen" : ""}`}>
       {/* Map Header / Legend */}
       <div className="map-legend">
         <div className="legend-item">
@@ -370,8 +377,18 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Floating GIS Zoom Controls */}
+        {/* Floating GIS Zoom & Theme Controls */}
         <div className="map-zoom-controls">
+          <button
+            type="button"
+            className="zoom-btn theme-toggle-btn"
+            onClick={toggleMapTheme}
+            title={isLight ? "Chuyển sang Google Dark Theme" : "Chuyển sang Google Light Theme"}
+            aria-label="Đổi giao diện bản đồ"
+          >
+            {isLight ? "🌃 Dark" : "☀️ Light"}
+          </button>
+          <div className="zoom-btn-divider" />
           <button
             type="button"
             className="zoom-btn"
@@ -417,40 +434,53 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
         <div className="map-zoom-hint">
           <span>
             {currentZoom > 2.5
-              ? "🔎 Đang soi chi tiết địa bàn • Cuộn / nhấp đúp để phóng to sâu tới 1000%"
-              : "🗺️ Cuộn chuột / nhấp đúp để soi sâu từng tỉnh thành • Kéo rê để di chuyển"}
+              ? "🔎 Google Maps Deep Zoom • Cuộn / nhấp đúp để soi sâu 1000%"
+              : "🗺️ Google Maps Theme • Cuộn chuột / nhấp đúp để phóng to • Kéo rê để di chuyển"}
           </span>
         </div>
 
-        {/* Pure GIS SVG Map Vector ViewBox */}
+        {/* Authentic Google Maps Style Vector ViewBox */}
         <svg
           viewBox={`${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`}
           className="vietnam-map-svg"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="provinceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00352c" />
-              <stop offset="100%" stopColor="#001d18" />
+            {/* Google Maps Dark Mode Gradients */}
+            <linearGradient id="provinceGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#242f3e" />
+              <stop offset="100%" stopColor="#1d2736" />
             </linearGradient>
 
-            <linearGradient id="activeProvinceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#006352" />
-              <stop offset="100%" stopColor="#003d32" />
+            <linearGradient id="activeProvinceGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1f483d" />
+              <stop offset="100%" stopColor="#16382f" />
             </linearGradient>
 
-            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
+            {/* Google Maps Light Mode Gradients */}
+            <linearGradient id="provinceGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#f4f3f0" />
+              <stop offset="100%" stopColor="#ebe9e4" />
+            </linearGradient>
+
+            <linearGradient id="activeProvinceGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#d4ebd0" />
+              <stop offset="100%" stopColor="#c1e3ba" />
+            </linearGradient>
+
+            {/* Pin Glow Effects */}
+            <filter id="pinGlowRed" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
 
-          {/* Decorative Grid Lines */}
+          {/* Decorative Sea Grid Lines (Google Maps Latitude/Longitude Grid) */}
           <g
             className="map-grid-lines"
-            stroke="rgba(200, 155, 75, 0.08)"
-            strokeWidth={0.5 / currentZoom}
-            strokeDasharray="3 3"
+            stroke={isLight ? "rgba(26, 115, 232, 0.12)" : "rgba(138, 180, 248, 0.12)"}
+            strokeWidth={0.6 / currentZoom}
+            strokeDasharray="4 4"
           >
             <line x1="50" y1="0" x2="50" y2="750" />
             <line x1="150" y1="0" x2="150" y2="750" />
@@ -467,22 +497,22 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
           {/* Geographical Regions & Sea Labels (Revealed on Zoom > 1.4) */}
           {currentZoom >= 1.4 && (
             <g className="map-geo-labels-layer" pointerEvents="none">
-              <text x="390" y="190" fill="rgba(74, 158, 142, 0.45)" fontSize={11 * pinScale} fontStyle="italic" fontWeight="600">
+              <text x="390" y="190" fill={isLight ? "rgba(26, 115, 232, 0.7)" : "rgba(138, 180, 248, 0.6)"} fontSize={11 * pinScale} fontStyle="italic" fontWeight="600">
                 Vịnh Bắc Bộ
               </text>
-              <text x="420" y="440" fill="rgba(74, 158, 142, 0.45)" fontSize={12 * pinScale} fontStyle="italic" fontWeight="700" letterSpacing="1.5">
+              <text x="420" y="440" fill={isLight ? "rgba(26, 115, 232, 0.7)" : "rgba(138, 180, 248, 0.65)"} fontSize={12 * pinScale} fontStyle="italic" fontWeight="700" letterSpacing="1.5">
                 BIỂN ĐÔNG
               </text>
-              <text x="210" y="145" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+              <text x="210" y="145" fill={isLight ? "rgba(60, 64, 67, 0.55)" : "rgba(200, 155, 75, 0.45)"} fontSize={9 * pinScale} fontWeight="600">
                 Đồng bằng Sông Hồng
               </text>
-              <text x="260" y="370" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+              <text x="260" y="370" fill={isLight ? "rgba(60, 64, 67, 0.55)" : "rgba(200, 155, 75, 0.45)"} fontSize={9 * pinScale} fontWeight="600">
                 Duyên hải Miền Trung
               </text>
-              <text x="270" y="510" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+              <text x="270" y="510" fill={isLight ? "rgba(60, 64, 67, 0.55)" : "rgba(200, 155, 75, 0.45)"} fontSize={9 * pinScale} fontWeight="600">
                 Tây Nguyên
               </text>
-              <text x="160" y="665" fill="rgba(200, 155, 75, 0.35)" fontSize={9 * pinScale} fontWeight="600">
+              <text x="160" y="665" fill={isLight ? "rgba(60, 64, 67, 0.55)" : "rgba(200, 155, 75, 0.45)"} fontSize={9 * pinScale} fontWeight="600">
                 Đồng bằng Sông Cửu Long
               </text>
             </g>
@@ -496,6 +526,20 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
               const isActive = Boolean(activeData);
               const isHovered = hoveredProvinceId === prov.id;
 
+              const fillGradient = isLight
+                ? isActive
+                  ? "url(#activeProvinceGradientLight)"
+                  : "url(#provinceGradientLight)"
+                : isActive
+                ? "url(#activeProvinceGradientDark)"
+                : "url(#provinceGradientDark)";
+
+              const strokeColor = isHovered
+                ? isLight ? "#1a73e8" : "#fbbc04"
+                : isActive
+                ? isLight ? "#1e8e3e" : "#34a853"
+                : isLight ? "#c4c3be" : "#38414e";
+
               return (
                 <path
                   key={prov.id}
@@ -503,19 +547,9 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   className={`province-path ${isActive ? "has-activity" : ""} ${
                     isHovered ? "hovered" : ""
                   }`}
-                  fill={
-                    isActive
-                      ? "url(#activeProvinceGradient)"
-                      : "url(#provinceGradient)"
-                  }
-                  stroke={
-                    isHovered
-                      ? "#c89b4b"
-                      : isActive
-                      ? "rgba(74, 158, 142, 0.7)"
-                      : "rgba(255, 255, 255, 0.12)"
-                  }
-                  strokeWidth={(isHovered ? 1.8 : isActive ? 1.2 : 0.5) / Math.sqrt(currentZoom)}
+                  fill={fillGradient}
+                  stroke={strokeColor}
+                  strokeWidth={(isHovered ? 2.0 : isActive ? 1.3 : 0.6) / Math.sqrt(currentZoom)}
                   onMouseEnter={() => setHoveredProvinceId(prov.id)}
                   onMouseLeave={() => setHoveredProvinceId(null)}
                   onClick={() => {
@@ -537,24 +571,24 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                 cx="0"
                 cy="0"
                 r={4.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <circle
                 cx="12"
                 cy="-6"
                 r={3.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <circle
                 cx="8"
                 cy="10"
                 r={3.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <text
@@ -562,7 +596,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                 y="24"
                 textAnchor="middle"
                 className="island-text"
-                fill="#c89b4b"
+                fill={isLight ? "#1a73e8" : "#8ab4f8"}
                 fontSize={11 * pinScale}
                 fontWeight="700"
               >
@@ -576,32 +610,32 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                 cx="0"
                 cy="0"
                 r={4.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <circle
                 cx="18"
                 cy="12"
                 r={3.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <circle
                 cx="-12"
                 cy="24"
                 r={3.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <circle
                 cx="22"
                 cy="32"
                 r={4.5 * pinScale}
-                fill="rgba(200, 155, 75, 0.85)"
-                stroke="#c89b4b"
+                fill={isLight ? "#ea4335" : "#fbbc04"}
+                stroke={isLight ? "#1a73e8" : "#ea4335"}
                 strokeWidth={1.2 * pinScale}
               />
               <text
@@ -609,7 +643,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                 y="48"
                 textAnchor="middle"
                 className="island-text"
-                fill="#c89b4b"
+                fill={isLight ? "#1a73e8" : "#8ab4f8"}
                 fontSize={11 * pinScale}
                 fontWeight="700"
               >
@@ -618,7 +652,7 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
             </g>
           </g>
 
-          {/* Active Activity Pin Markers Layer */}
+          {/* Active Activity Pin Markers Layer (Google Maps Icon Pins) */}
           <g className="map-pins-layer">
             {vietnamProvincePaths.map((prov) => {
               const norm = normalizeName(prov.name);
@@ -631,6 +665,14 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
               const topCategory =
                 activeData.filteredActivities[0]?.category || "teacher-training";
               const venueName = activeData.filteredActivities[0]?.location || "";
+
+              // Distinct Google Maps Pin Colors per category
+              const pinColor =
+                topCategory === "khkt-coaching"
+                  ? "#ea4335" // Google Red
+                  : topCategory === "teacher-training"
+                  ? "#34a853" // Google Green
+                  : "#4285f4"; // Google Blue
 
               return (
                 <g
@@ -649,20 +691,21 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   style={{ cursor: "pointer" }}
                 >
                   {/* Pulsing Outer Rings */}
-                  <circle className="pulse-ring" r="14" />
-                  <circle className="pulse-ring-outer" r="22" />
+                  <circle className="pulse-ring" r="14" stroke={pinColor} />
+                  <circle className="pulse-ring-outer" r="22" stroke={pinColor} />
 
-                  {/* Center Pin Marker */}
-                  <circle className="pin-core" r="8" filter="url(#glow)" />
+                  {/* Iconic Google Pin Core Circle */}
+                  <circle className="pin-core" r="8.5" fill={pinColor} filter="url(#pinGlowRed)" />
+                  <circle cx="0" cy="0" r="3.5" fill="#ffffff" />
 
                   {/* Badge Count Indicator */}
-                  <circle className="pin-badge-bg" cx="9" cy="-9" r="8.5" fill="#c89b4b" />
+                  <circle className="pin-badge-bg" cx="10" cy="-10" r="8.5" fill="#ea4335" />
                   <text
-                    x="9"
-                    y="-6"
+                    x="10"
+                    y="-7"
                     textAnchor="middle"
-                    fill="#001410"
-                    fontSize="11"
+                    fill="#ffffff"
+                    fontSize="10.5"
                     fontWeight="bold"
                   >
                     {activeData.matchingCount}
@@ -670,12 +713,13 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
 
                   {/* Province Name Label */}
                   <text
-                    x="15"
+                    x="16"
                     y="4"
                     className="province-label"
-                    fill="#ffffff"
+                    fill={isLight ? "#202124" : "#ffffff"}
                     fontSize="12"
-                    fontWeight="600"
+                    fontWeight="700"
+                    style={{ textShadow: isLight ? "0 1px 3px rgba(255,255,255,0.9)" : "0 2px 4px rgba(0,0,0,0.9)" }}
                   >
                     {prov.name}
                   </text>
@@ -683,12 +727,12 @@ export const VietnamMap: React.FC<VietnamMapProps> = ({
                   {/* Detailed Venue / Institution Label Revealed at Deep Zoom (> 2.4x) */}
                   {currentZoom >= 2.4 && venueName && (
                     <text
-                      x="15"
+                      x="16"
                       y="16"
                       className="venue-label"
-                      fill="#c89b4b"
+                      fill={isLight ? "#1a73e8" : "#8ab4f8"}
                       fontSize="9.5"
-                      fontWeight="500"
+                      fontWeight="600"
                     >
                       📍 {venueName}
                     </text>

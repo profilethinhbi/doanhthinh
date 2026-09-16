@@ -212,14 +212,25 @@
    VIETNAM MAP CONTAINER & SVG
 ========================================= */
 
+/* =========================================
+   VIETNAM MAP CONTAINER & SVG (GOOGLE MAPS THEME)
+========================================= */
+
 .vietnam-map-container {
   position: relative;
-  background: radial-gradient(circle at 50% 35%, #002620 0%, #00120d 100%);
-  border: 1px solid rgba(74, 158, 142, 0.3);
+  background: radial-gradient(circle at 50% 35%, #17263c 0%, #111c2e 100%);
+  border: 1px solid rgba(138, 180, 248, 0.25);
   border-radius: 24px;
   padding: 2.5rem 1.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
   overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.vietnam-map-container.light-theme {
+  background: radial-gradient(circle at 50% 35%, #aadaff 0%, #8ab4f8 100%);
+  border-color: rgba(26, 115, 232, 0.4);
+  box-shadow: 0 20px 50px rgba(26, 115, 232, 0.25);
 }
 
 .map-legend {
@@ -235,8 +246,12 @@
   align-items: center;
   gap: 8px;
   font-size: 0.88rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.light-theme .legend-item {
+  color: #202124;
 }
 
 .legend-dot {
@@ -245,19 +260,20 @@
   border-radius: 50%;
 }
 
+/* Google Maps Signature Colors: Green #34a853, Red #ea4335, Blue #4285f4 */
 .legend-dot.teacher-training {
-  background: #4a9e8e;
-  box-shadow: 0 0 10px #4a9e8e;
+  background: #34a853;
+  box-shadow: 0 0 10px rgba(52, 168, 83, 0.6);
 }
 
 .legend-dot.khkt-coaching {
-  background: #c89b4b;
-  box-shadow: 0 0 10px #c89b4b;
+  background: #ea4335;
+  box-shadow: 0 0 10px rgba(234, 67, 53, 0.6);
 }
 
 .legend-dot.research-deployment {
-  background: #5c8ce6;
-  box-shadow: 0 0 10px #5c8ce6;
+  background: #4285f4;
+  box-shadow: 0 0 10px rgba(66, 133, 244, 0.6);
 }
 
 .map-svg-wrapper {
@@ -272,6 +288,7 @@
   cursor: grab;
   user-select: none;
   touch-action: none;
+  background: transparent;
 }
 
 .vietnam-map-container.fullscreen {
@@ -280,9 +297,13 @@
   z-index: 9999;
   border-radius: 0;
   padding: 1.5rem;
-  background: #00120d;
+  background: #111c2e;
   box-shadow: none;
   border: none;
+}
+
+.vietnam-map-container.light-theme.fullscreen {
+  background: #8ab4f8;
 }
 
 .vietnam-map-container.fullscreen .map-svg-wrapper {
@@ -297,11 +318,11 @@
 }
 
 .venue-label {
-  opacity: 0.9;
+  opacity: 0.95;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* FLOATING MAP ZOOM CONTROLS */
+/* FLOATING GOOGLE MAPS CONTROLS */
 .map-zoom-controls {
   position: absolute;
   top: 15px;
@@ -310,12 +331,19 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 20, 16, 0.85);
-  border: 1px solid rgba(200, 155, 75, 0.4);
+  background: rgba(36, 47, 62, 0.92);
+  border: 1px solid rgba(138, 180, 248, 0.35);
   border-radius: 12px;
   padding: 6px 10px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.light-theme .map-zoom-controls {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(26, 115, 232, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .zoom-btn {
@@ -334,20 +362,55 @@
   transition: all 0.2s ease;
 }
 
+.light-theme .zoom-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #202124;
+}
+
 .zoom-btn:hover {
-  background: rgba(200, 155, 75, 0.25);
-  border-color: #c89b4b;
-  color: #c89b4b;
+  background: rgba(138, 180, 248, 0.25);
+  border-color: #8ab4f8;
+  color: #8ab4f8;
+}
+
+.light-theme .zoom-btn:hover {
+  background: rgba(26, 115, 232, 0.12);
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.theme-toggle-btn {
+  width: auto;
+  padding: 0 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+}
+
+.zoom-btn-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 2px;
+}
+
+.light-theme .zoom-btn-divider {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .zoom-level-badge {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
-  color: #c89b4b;
+  color: #8ab4f8;
   padding: 0 4px;
   min-width: 42px;
   text-align: center;
+}
+
+.light-theme .zoom-level-badge {
+  color: #1a73e8;
 }
 
 .reset-btn {
@@ -363,14 +426,21 @@
   bottom: 15px;
   left: 15px;
   z-index: 20;
-  background: rgba(0, 20, 16, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(36, 47, 62, 0.85);
+  border: 1px solid rgba(138, 180, 248, 0.25);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.light-theme .map-zoom-hint {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(26, 115, 232, 0.25);
+  color: #202124;
 }
 
 .vietnam-map-svg {
