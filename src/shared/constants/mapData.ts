@@ -21,6 +21,7 @@ export const provinceDataList: ProvinceData[] = [
         organization: "Hội Tin học & Các Trường THPT Chuyên",
         tags: ["STEM", "IoT", "ESP32", "Giáo dục"],
         image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24"
       },
       {
@@ -34,6 +35,7 @@ export const provinceDataList: ProvinceData[] = [
         achievements: ["Giải Nhất Cuộc thi KHKT Cấp Thành phố", "Giải Nhì Cuộc thi KHKT Cấp Quốc gia"],
         tags: ["AI", "YOLO", "Raspberry Pi", "KHKT"],
         image: profileImg,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/SmartTrafficLight"
       },
       {
@@ -46,6 +48,7 @@ export const provinceDataList: ProvinceData[] = [
         description: "Triển khai lắp đặt trạm quan trắc sạt lở đất địa hình đồi núi thử nghiệm giao thức LoRa kết hợp MQTT.",
         tags: ["LoRa", "MQTT", "ESP32", "Cảnh báo sớm"],
         image: bachelorGrad,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/landslide-be"
       }
     ]
@@ -67,6 +70,7 @@ export const provinceDataList: ProvinceData[] = [
         organization: "Sở GD&ĐT Phú Thọ",
         tags: ["Robotics", "Bluetooth", "App Control"],
         image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/stemvn-bluecontrol"
       },
       {
@@ -80,6 +84,7 @@ export const provinceDataList: ProvinceData[] = [
         achievements: ["Giải Nhất Cuộc thi KHKT Cấp Tỉnh 2024"],
         tags: ["Smart Agriculture", "IoT", "KHKT"],
         image: profileImg,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/SmartAgriculture"
       }
     ]
@@ -99,7 +104,8 @@ export const provinceDataList: ProvinceData[] = [
         role: "Chuyên gia huấn luyện",
         description: "Đào tạo phương pháp giảng dạy tích hợp các dự án thực tế về cảm biến và xử lý ảnh cho giáo viên môn Công nghệ/Tin học.",
         tags: ["AI", "Giáo dục STEM", "Tin học"],
-        image: epuBuilding
+        image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276"
       }
     ]
   },
@@ -118,7 +124,8 @@ export const provinceDataList: ProvinceData[] = [
         role: "Báo cáo viên",
         description: "Chia sẻ kinh nghiệm thiết kế phần cứng vi điều khiển, tối ưu năng lượng cho trạm quan trắc tự động.",
         tags: ["Embedded System", "Circuit Design"],
-        image: profileImg
+        image: profileImg,
+        facebookLink: "https://www.facebook.com/thinhbi276"
       }
     ]
   },
@@ -138,7 +145,8 @@ export const provinceDataList: ProvinceData[] = [
         description: "Chuỗi tập huấn 3 ngày về xây dựng không gian sáng chế (Makerspace) và quản lý thiết bị học tập thông minh.",
         organization: "Quỹ Phát triển Giáo dục STEM",
         tags: ["Makerspace", "STEM", "IoT"],
-        image: epuBuilding
+        image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276"
       },
       {
         id: "dn-2",
@@ -150,7 +158,8 @@ export const provinceDataList: ProvinceData[] = [
         description: "Hỗ trợ học sinh hoàn thiện sản phẩm tay giả sinh học điều khiển bằng sóng cơ học và cảm biến chuyển động.",
         achievements: ["Giải Ba Cuộc thi KHKT Cấp Quốc Gia 2022"],
         tags: ["Biomedical", "Sensors", "KHKT"],
-        image: profileImg
+        image: profileImg,
+        facebookLink: "https://www.facebook.com/thinhbi276"
       }
     ]
   },
@@ -170,6 +179,7 @@ export const provinceDataList: ProvinceData[] = [
         description: "Lắp đặt và chạy thử nghiệm hệ thống quản lý độ ẩm, ánh sáng và dinh dưỡng thủy canh tự động tại trang trại hoa Đà Lạt.",
         tags: ["Smart Agriculture", "Hydroponics", "IoT"],
         image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/SmartAgriculture"
       }
     ]
@@ -190,6 +200,7 @@ export const provinceDataList: ProvinceData[] = [
         description: "Tập huấn cho đội ngũ giáo viên cốt cán về thiết kế giải pháp nhà thông minh FlexibleSmartHome tích hợp giao diện màn hình LVGL.",
         tags: ["Robotics", "LVGL", "Smart Home"],
         image: epuBuilding,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/FlexibleSmartHome"
       },
       {
@@ -203,6 +214,7 @@ export const provinceDataList: ProvinceData[] = [
         achievements: ["Giải Nhất Cuộc thi Sáng tạo KH-CN 2024"],
         tags: ["AI Model", "Web App", "KHKT"],
         image: bachelorGrad,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/JobFIT"
       }
     ]
@@ -223,6 +235,7 @@ export const provinceDataList: ProvinceData[] = [
         description: "Hướng dẫn kết nối cảm biến đo độ mặn, pH và giám sát ao nuôi thủy sản thông qua ứng dụng di động.",
         tags: ["IoT Nông nghiệp", "Cảm biến", "ĐBSCL"],
         image: profileImg,
+        facebookLink: "https://www.facebook.com/thinhbi276",
         proofLink: "https://github.com/mellivora24/AgriCommercePlatform"
       }
     ]

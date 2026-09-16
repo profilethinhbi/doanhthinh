@@ -39,6 +39,29 @@ export default function ProjectsPage() {
         <div className="projects-header">
           <h1 className="projects-title">{t("projects_page.hero.title")}</h1>
           <p className="projects-subtitle">{t("projects_page.hero.subtitle")}</p>
+          <div style={{ marginTop: "1rem" }}>
+            <a
+              href="https://www.facebook.com/thinhbi276"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="proof-link-btn"
+              style={{
+                background: "rgba(24, 119, 242, 0.12)",
+                borderColor: "rgba(24, 119, 242, 0.35)",
+                color: "#1877f2",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                fontSize: "0.88rem",
+                padding: "8px 18px",
+                borderRadius: "999px",
+                textDecoration: "none",
+                fontWeight: 600,
+              }}
+            >
+              📘 Theo dõi bài viết & hình ảnh các đợt tập huấn tại Facebook: facebook.com/thinhbi276 ➔
+            </a>
+          </div>
         </div>
 
         {/* View Mode Toggle Bar (Bản đồ tương tác vs Danh sách) */}

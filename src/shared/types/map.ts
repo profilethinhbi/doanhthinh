@@ -14,6 +14,7 @@ export type MapActivity = {
   image?: string;
   images?: string[];
   proofLink?: string;
+  facebookLink?: string;
 };
 
 export type ProvinceData = {

@@ -42,7 +42,15 @@ export const MapActivityModal: React.FC<MapActivityModalProps> = ({
               <span className="modal-location-tag">📍 Tỉnh / Thành phố</span>
               <h2 className="modal-title">{province.name}</h2>
               <p className="modal-subtitle">
-                Danh sách các đợt tập huấn giáo viên, hướng dẫn đội thi KHKT và dự án nghiên cứu có hình ảnh minh chứng
+                Danh sách các đợt tập huấn giáo viên, hướng dẫn đội thi KHKT và dự án nghiên cứu • Minh chứng chính thức tại{" "}
+                <a
+                  href="https://www.facebook.com/thinhbi276"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#1877f2", textDecoration: "underline", fontWeight: 600 }}
+                >
+                  facebook.com/thinhbi276
+                </a>
               </p>
             </div>
             <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
@@ -124,19 +132,34 @@ export const MapActivityModal: React.FC<MapActivityModalProps> = ({
                     </div>
                   )}
 
-                  {/* Proof Link / GitHub Button */}
-                  {act.proofLink && (
-                    <div className="act-proof-link-wrap">
+                  {/* Proof Links / Facebook & GitHub Buttons */}
+                  <div className="act-proof-link-wrap" style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {act.facebookLink && (
+                      <a
+                        href={act.facebookLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="proof-link-btn fb-proof-btn"
+                        style={{
+                          background: "rgba(24, 119, 242, 0.15)",
+                          borderColor: "rgba(24, 119, 242, 0.4)",
+                          color: "#1877f2",
+                        }}
+                      >
+                        📘 Xem minh chứng & bài viết trên Facebook (thinhbi276) ➔
+                      </a>
+                    )}
+                    {act.proofLink && (
                       <a
                         href={act.proofLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="proof-link-btn"
                       >
-                        🔗 Xem chi tiết Dự án & Minh chứng báo cáo ➔
+                        🔗 Xem chi tiết Mã nguồn / Dự án ➔
                       </a>
-                    </div>
-                  )}
+                    )}
+                  </div>
 
                   {/* Tags */}
                   {act.tags && act.tags.length > 0 && (
